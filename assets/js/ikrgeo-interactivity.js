@@ -317,8 +317,8 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
         const editElements = document.querySelectorAll(
           '[data-edit="ikr_data_edit"]'
         );
-        console.log(editElements);
-        // Loop through each selected element
+    
+        // Loop through each selected element and edit db
         editElements.forEach((edit_ele) => {
           // add a click event to get the dataset
           edit_ele.addEventListener("click", (ev) => {
@@ -334,6 +334,21 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
             modal_fill_color.value = itemData.fill_color;
             modal_filltype.value = itemData.fill_color;
           });
+        });
+
+
+        // delete the database  entry  on delete button click
+
+        const delete_state_data = document.querySelectorAll('[data-delete="ikr_data_delete"]');
+        delete_state_data.forEach((delete_ele) => {
+     
+          delete_ele.addEventListener('click', (ev) => {
+             
+            const deleted_id = ev.target.dataset.id;
+            console.log(deleted_id)
+
+          });
+
         });
       }
     } catch (err) {
