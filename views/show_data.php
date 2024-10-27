@@ -58,7 +58,7 @@
                 <div class="ikr_color_inp d-flex justify-content-center position-relative ">
 
                   <input type="text" name="modal_ikr_img" id="modal_ikr_img" placeholder="" />
-                  <input type="button" value="Slect Image" class="ikr_select_img btn btn-primary" id="ikr_select_img">
+                  <input type="button" value="Slect Image" class="ikr_select_img btn btn-primary" id="modal_ikr_select_img">
                 </div>
                 <label class="ikr_form_label" for="modal_link">Website url</label>
 
@@ -107,3 +107,6 @@
     <!-- Rows will be populated by JavaScript -->
   </tbody>
 </table>
+<script>
+    const deleteNonce = "<?php echo wp_create_nonce('w_map_form_delete_action'); ?>";
+</script>

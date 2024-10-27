@@ -6,6 +6,7 @@ const detail = document.getElementById("detail");
 const form_inp = document.getElementById("rdata_from");
 
 const map_id = document.getElementById("map_id");
+console.log(map_id)
 
 const ikrTitle = document.getElementById("ikrTitle");
 
@@ -41,6 +42,7 @@ const modal_filltype = document.getElementById("modal_filltype");
 const modal_fill_color = document.getElementById("modal_fill_color");
 
 const ikr_select_img = document.getElementById("ikr_select_img");
+const ikr_w_img_inp = document.getElementById('ikr_w_img');
 const modal_link = document.getElementById("modal_link");
 
 //  get data on load
@@ -84,10 +86,16 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
     // set the id of the click item id in input fild map_id
     map_id.value = click_id;
+    if(map_id.value !== ''){
+   rdata_submit_form.removeAttribute('disabled','');
+    }
+
 
     if (Object.keys(data_set).length === 0) {
       ikrTitle.value = "";
       ikrdes.value = "";
+      modal_link.value = '';
+      ikr_w_img_inp.value = '';
       rdata_submit_form.value = "Submit";
     } else {
       // get the data from the dataset
@@ -98,10 +106,18 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
       fill_color.value = data_set.fill;
       filltype.value = data_set.fill;
+      
+      console.log(modal_link)
+      modal_link.value = data_set.link
+      ikr_w_img_inp.value = data_set.img
+      
 
       // change the submit button value
 
       rdata_submit_form.value = "Edit";
+      
+
+
     }
   }
 
@@ -164,6 +180,42 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
   setColorType(modal_hovecolor, modal_typeHovcolor);
   setColorType(modal_fill_color, modal_filltype);
+
+// select media from wordpress media 
+
+ikr_select_img.addEventListener('click', ev =>{
+ 
+  select_media_url(ev);
+
+});
+
+
+
+
+function select_media_url(event) {
+  event.preventDefault();
+
+  // Create a media frame
+  const mediaFrame = wp.media({
+      title: 'Select Image',
+      button: {
+          text: 'Use this image'
+      },
+      multiple: false  // Set to false to allow only one image to be selected
+  });
+
+  // When an image is selected, run a callback.
+  mediaFrame.on('select', function() {
+      const attachment = mediaFrame.state().get('selection').first().toJSON();
+      ikr_w_img_inp.value = attachment.url; // Set image URL to input
+  });
+
+  // Open the media frame
+  mediaFrame.open();
+};
+
+
+
 
   form_inp.addEventListener("submit", (subEv) => {
     subEv.preventDefault(); // Prevent default form submission
@@ -246,23 +298,25 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
         your_ajax_object.ajax_url
       );
 
-      console.log(response);
       // check the  response status code
 
       if (response.length == 0) {
-        console.log("No data found");
+        return;
       } else {
         // set the color of  the map based on the data
         items.forEach((mapId) => {
           response.forEach((data) => {
+            console.log(data)
             if (mapId.id == data.map_id) {
               const setColor = ikrsvg.querySelector(`#${mapId.id}`);
               setColor.setAttribute("data-fill", data.fill_color);
               setColor.setAttribute("data-hover", data.hov_color);
               setColor.setAttribute("data-title", data.title);
               setColor.setAttribute("data-desc", data.map_des);
+              setColor.setAttribute("data-img", data.map_img);
+              setColor.setAttribute("data-link", data.map_link);
               setColor.style.fill = `${data.fill_color}`;
-            }
+            } 
           });
         });
 
@@ -272,48 +326,47 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
           const tableBody = document.querySelector("#mapTable tbody");
           console.log(tableBody);
           tableBody.innerHTML = ""; // Clear existing rows
-
-          data.forEach((item, ind) => {
-            const row = document.createElement("tr");
-            row.classList.add("shadow", "my-2");
-
-            // Limit content to the first 5 words
-            const limitWords = (text, wordLimit) => {
-              const words = text.split(" ");
-              return words.length > wordLimit
-                ? words.slice(0, wordLimit).join(" ") + "..."
-                : text;
-            };
-
-            row.innerHTML = `
-        <td>${ind + 1}</td>
-        <td>${item.map_id}</td>
-        <td>${limitWords(item.title, 5)}</td>
-        <td>${limitWords(item.map_des, 4)}</td>
-        <td style="background-color: ${item.hov_color};">${item.hov_color}</td>
-        <td style="background-color: ${item.fill_color};">${
-              item.fill_color
-            }</td>
       
-        <td>
-            <button class="edit-btn btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ikr_map_data_edit" data-id="${
-              item.map_id
-            }" data-edit="ikr_data_edit">Edit</button>
-            <button class="delete-btn btn btn-sm btn-danger" data-delete="ikr_data_delete" data-id="${
-              item.map_id
-            }">Delete</button>
-        </td>
-    `;
-
-            tableBody.appendChild(row);
+          data.forEach((item, ind) => {
+              const row = document.createElement("tr");
+              row.classList.add("shadow", "my-2");
+      
+              // Limit content to the first 5 words
+              const limitWords = (text, wordLimit) => {
+                  const words = text.split(" ");
+                  return words.length > wordLimit
+                      ? words.slice(0, wordLimit).join(" ") + "..."
+                      : text;
+              };
+      
+              row.innerHTML = `
+                  <td>${ind + 1}</td>
+                  <td>${item.map_id}</td>
+                  <td>${limitWords(item.title, 5)}</td>
+                  <td>${limitWords(item.map_des, 4)}</td>
+                  <td style="background-color: ${item.hov_color};">${item.hov_color}</td>
+                  <td style="background-color: ${item.fill_color};">${item.fill_color}</td>
+                  <td>
+                      <button class="edit-btn btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ikr_map_data_edit" data-id="${item.map_id}" data-edit="ikr_data_edit">Edit</button>
+                      
+                      <form  class="d-inline" action=""  data-id="${item.map_id}" data-form_id="delete_form">
+                          <input type="hidden" name="map_id" value="${item.map_id}">
+                          <input type="hidden" name="w_map_form_delete_nonce" value="${deleteNonce}">
+                          <button type="submit" class="delete-btn btn btn-sm btn-danger" data-delete="ikr_data_delete" data-id="${item.map_id}">Delete</button>
+                      </form>
+                  </td>
+              `;
+      
+              tableBody.appendChild(row);
           });
-        }
-
+      }
+      
 
     
         // add modal value on click
         // get modal input
         populateTable(response);
+
         const editElements = document.querySelectorAll(
           '[data-edit="ikr_data_edit"]'
         );
@@ -339,22 +392,55 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
         // delete the database  entry  on delete button click
 
-        const delete_state_data = document.querySelectorAll('[data-delete="ikr_data_delete"]');
+        const delete_state_data = document.querySelectorAll('[data-form_id="delete_form"]');
+        
+    
         delete_state_data.forEach((delete_ele) => {
-     
-          delete_ele.addEventListener('click', (ev) => {
-             
-            const deleted_id = ev.target.dataset.id;
-            console.log(deleted_id)
+        
+            delete_ele.addEventListener('submit', (ev) => {
+                ev.preventDefault(); // Prevent the default form submission
+      
+                // Show a confirmation alert
+                const isConfirmed = confirm("Are you sure you want to delete this item?");
+        
+                // If the user confirms, submit the form
+                if (isConfirmed) {
+                 
+                  worldmp_makeAjaxRequestGlobal(
+                    delete_ele,
+                    your_ajax_object.delete_data,
+                    (success) => {
+                      if (success) {
+                        console.log("Data successfully sent to the server.");
+            
+                        // Fetch data from the database after the data is sent successfully
+                        featch_data_from_db();
+                      } else {
+                        console.log("Failed to send data.");
+                      }
+                    }
+                  );
+                  // get map state 
 
-          });
-
+                  const remove_color = ikrsvg.querySelector(`#${ev.target.dataset.id}`)
+                remove_color.style.fill = '';
+                
+              
+                }
+            });
+        
         });
+        
       }
     } catch (err) {
       console.log(err);
     }
   }
+
+
+
+
+
 
   featch_data_from_db();
 });

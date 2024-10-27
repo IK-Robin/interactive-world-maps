@@ -39,7 +39,7 @@
 
             <div class="ikr_color_inp d-flex justify-content-center position-relative ">
 
-                <input type="text" name="modal_ikr_img" id="modal_ikr_img" placeholder="" />
+                <input type="text" name="modal_ikr_img" id="ikr_w_img" placeholder="" />
                 <input type="button" value="Slect Image" class="ikr_select_img btn btn-primary shadow-none" id="ikr_select_img">
             </div>
             <label class="ikr_form_label" for="modal_link">Website url</label>
@@ -48,7 +48,7 @@
 
 
 
-            <input id="rdata_submit_form" type="submit" value="Submit" class="btn btn-primary" />
+            <input disabled id="rdata_submit_form" type="submit" value="Submit" class="btn btn-primary" />
         </div>
     </div>
 
