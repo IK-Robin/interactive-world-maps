@@ -42,8 +42,16 @@ const modal_filltype = document.getElementById("modal_filltype");
 const modal_fill_color = document.getElementById("modal_fill_color");
 
 const ikr_select_img = document.getElementById("ikr_select_img");
+
+const modal_ikr_select_img  = document.getElementById('modal_ikr_select_img');
+const modal_ikr_img  = document.getElementById('modal_ikr_img');
+
+
+
 const ikr_w_img_inp = document.getElementById('ikr_w_img');
+
 const modal_link = document.getElementById("modal_link");
+const modal_link_edit = document.getElementById("modal_link_edit");
 
 //  get data on load
 
@@ -185,14 +193,19 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
 ikr_select_img.addEventListener('click', ev =>{
  
-  select_media_url(ev);
+  select_media_url(ev,ikr_w_img_inp);
+
+});
+modal_ikr_select_img.addEventListener('click', ev =>{
+ 
+  select_media_url(ev,modal_ikr_img);
 
 });
 
 
 
 
-function select_media_url(event) {
+function select_media_url(event,input_ele) {
   event.preventDefault();
 
   // Create a media frame
@@ -207,7 +220,7 @@ function select_media_url(event) {
   // When an image is selected, run a callback.
   mediaFrame.on('select', function() {
       const attachment = mediaFrame.state().get('selection').first().toJSON();
-      ikr_w_img_inp.value = attachment.url; // Set image URL to input
+      input_ele.value = attachment.url; // Set image URL to input
   });
 
   // Open the media frame
@@ -306,7 +319,7 @@ function select_media_url(event) {
         // set the color of  the map based on the data
         items.forEach((mapId) => {
           response.forEach((data) => {
-            console.log(data)
+          
             if (mapId.id == data.map_id) {
               const setColor = ikrsvg.querySelector(`#${mapId.id}`);
               setColor.setAttribute("data-fill", data.fill_color);
@@ -386,6 +399,8 @@ function select_media_url(event) {
             modal_hovecolor.value = itemData.hov_color;
             modal_fill_color.value = itemData.fill_color;
             modal_filltype.value = itemData.fill_color;
+            modal_ikr_img.value = itemData.map_img;
+            modal_link_edit.value = itemData.map_link;
           });
         });
 

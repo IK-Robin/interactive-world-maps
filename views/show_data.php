@@ -58,11 +58,11 @@
                 <div class="ikr_color_inp d-flex justify-content-center position-relative ">
 
                   <input type="text" name="modal_ikr_img" id="modal_ikr_img" placeholder="" />
-                  <input type="button" value="Slect Image" class="ikr_select_img btn btn-primary" id="modal_ikr_select_img">
+                  <input type="button" value="Slect Image" class="ikr_select_img btn btn-primary ‍ shadow-none" id="modal_ikr_select_img">
                 </div>
                 <label class="ikr_form_label" for="modal_link">Website url</label>
 
-                <input type="text" name="modal_link" id="modal_link" placeholder="http://google.com" />
+                <input type="text" name="modal_link" id="modal_link_edit" placeholder="http://google.com" />
 
 
               </div>
