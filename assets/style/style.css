@@ -1,0 +1,389 @@
+.robingeo-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 2;
+  position: relative;
+}
+
+.map_container {
+  display: flex;
+  width: 70%;
+  height: auto;
+  flex-direction: column;
+}
+
+.map-img {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+.map-data-show {
+  width: 100%;
+  height: auto;
+  overflow: auto; /* Add this line to enable scrolling */
+}
+
+.input-form {
+  width: 30%;
+  height: auto;
+  /* display: flex; */
+}
+
+/* input form section 
+ */
+.data-entry {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  justify-content: center;
+}
+
+.rgeo_world_map_img {
+  width: 80%;
+  height: auto;
+}
+
+.map-img {
+  width: 100%;
+  height: auto;
+}
+
+/* Style the color input */
+input[type=color] {
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+}
+
+.tooltip {
+  /*pointer-events: none;
+  */
+  position: absolute;
+  display: none;
+  font-size: 18px;
+  text-align: center;
+  background: white;
+  padding: 10px 15px;
+  z-index: 5;
+  height: auto;
+  line-height: 9px;
+  margin: 0 auto;
+  color: #21669e;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #eee;
+  transform: translate(-47%, -20%);
+  -webkit-transform: translate(-47%, -20%);
+  -moz-transform: translate(-47%, -20%);
+  -ms-transform: translate(-47%, -20%);
+  -o-transform: translate(-47%, -20%);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.tooltip.active {
+  display: block;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+/*  styleing detail  */
+#close {
+  text-align: center;
+  cursor: pointer;
+  width: 36px;
+  height: 30px;
+  position: absolute;
+  background-color: lightblue;
+  right: -11px;
+  top: -15px;
+  border-radius: 60%;
+  padding-top: 0px;
+  margin: auto;
+  font-size: 20px;
+  padding: 6px 0 0 0;
+}
+
+#detail_img {
+  width: 300px;
+  height: auto;
+  -o-object-fit: h;
+     object-fit: h;
+  overflow: hidden;
+  margin: auto;
+}
+
+.map_details {
+  background-color: white;
+  font-size: 17px;
+  text-align: center;
+}
+
+#detail_des {
+  text-align: center;
+  padding: 0 0 15px;
+}
+
+#plotId {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+/* add new css  fro tooltip 
+
+*/
+.container {
+  display: flex;
+  flex-direction: row;
+  /* background-color: ; */
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
+
+#sidebar-thumbnails {
+  display: flex;
+  width: 900px;
+  flex-wrap: wrap;
+  height: auto;
+}
+
+img {
+  width: 100px;
+  height: auto;
+}
+
+.sidebar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+#img_object {
+  width: 600px;
+  height: 400px;
+}
+
+#container {
+  width: 100%;
+  background-color: red;
+  max-width: 700px;
+  height: 100vh;
+  position: relative;
+  /* overflow: hidden; */
+  background-color: transparent;
+}
+
+.item {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  margin: 10px;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  display: block;
+}
+
+.item:nth-child(2) {
+  width: 120px;
+}
+
+.item:nth-child(3) {
+  width: 300px;
+}
+
+.item:nth-child(4) {
+  width: 50px;
+}
+
+.item:nth-child(5) {
+  width: 120px;
+}
+
+.item:nth-child(6) {
+  width: 250px;
+}
+
+.position {
+  width: 10px;
+  height: 4px;
+  background-color: blue;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+#move {
+  width: 100px;
+  height: 50px;
+  background-color: gray;
+  position: absolute;
+  right: 20px;
+}
+
+/*  styleing detail  */
+#detail_para {
+  margin: 0;
+  font-size: 10px;
+}
+
+#detail_con {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.detail {
+  /* pointer-events: none; */
+  position: absolute;
+  font-size: 16px;
+  text-align: center;
+  background: white;
+  padding: 10px;
+  z-index: 5;
+  height: 100px;
+  /* line-height: 30px; */
+  margin: 0 auto;
+  color: #21669e;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #eee;
+  transform: translateX(-50%);
+  display: none;
+  width: 100px;
+}
+
+.detail::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+#tooltip {
+  pointer-events: none;
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+  background: white;
+  padding: 10px 15px;
+  z-index: 5;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+  color: #21669e;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px #eee;
+  transform: translateX(-50%);
+  display: none;
+  -o-transform: translateX(-50%);
+}
+
+#tooltip.active {
+  display: block;
+}
+
+#tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+.inputLabel {
+  background-color: white;
+  display: block;
+  width: 21%;
+}
+
+/* end details and tooltip style  */
+#changehover {
+  display: none;
+}
+
+.table {
+  border-spacing: 0 8px; /* Adds spacing only between rows */
+}
+
+/*edit modal form */
+.ikr_color_inp .ikr_w_typehove {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  border: 0;
+  border-radius: 51% !important;
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 51% !important;
+  -moz-border-radius: 51% !important;
+  -ms-border-radius: 51% !important;
+  -o-border-radius: 51% !important;
+  padding: 0 !important;
+}
+.ikr_color_inp .ikr_w_typehove:focus {
+  border: none;
+}
+.ikr_color_inp .ikr_w_typehove:active {
+  border: none;
+}
+.ikr_color_inp .ikr_w_hovecolor {
+  width: 100%;
+  /* max-height: 40px; */
+  padding: 7px;
+}
+
+.ikr_form_style label {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+.ikr_form_style input {
+  width: 100%;
+  padding: 7px;
+}
+.ikr_form_style input[type=submit] {
+  margin-top: 7px;
+}
+.ikr_form_style .ikr_select_img {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  max-width: 111px;
+  padding: 11px;
+}/*# sourceMappingURL=style.css.map */
