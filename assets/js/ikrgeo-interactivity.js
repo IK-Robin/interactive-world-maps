@@ -82,6 +82,14 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     map_item.addEventListener("click", (ev) => {
       map_click_func(ev);
     });
+    
+    // add mouse move event 
+    map_item.addEventListener("mousemove",(move_ev ) =>{
+
+    
+
+    });
+
   });
 
   function map_click_func(event) {
