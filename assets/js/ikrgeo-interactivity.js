@@ -1,6 +1,6 @@
 const ikrgooMap = document.querySelector(".svg_img_obj");
 
-const tooltip = document.getElementById("tooltip");
+const tooltip = document.getElementById("ikr_map_tooltip");
 const detail = document.getElementById("detail");
 
 const form_inp = document.getElementById("rdata_from");
@@ -86,11 +86,51 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     // add mouse move event 
     map_item.addEventListener("mousemove",(move_ev ) =>{
 
-    
+      showTooltip(move_ev);
+
+    });
+    map_item.addEventListener("mouseout",(move_ev ) =>{
+
+      hideTooltip(move_ev);
 
     });
 
   });
+
+
+  function showTooltip(hover) {
+    let ct = hover.target;
+    let data_name = ct.dataset;
+
+
+    // // add a stock color in map id
+    ct.style.stroke = "black";
+    ct.style.fill = data_name.hover;
+    ct.style.cursor = "pointer";
+
+    tooltip.style.display = "block";
+    tooltip.innerHTML = data_name.name;
+    let cx = hover.clientX ;
+    let cy = hover.clientY ;
+    tooltip.style.top = cy     - tooltip.offsetHeight -20+ "px";
+    tooltip.style.left = cx - tooltip.offsetWidth/3+ "px";
+    
+    // tooltip.style.top = hover.layerY + "px";
+    // tooltip.style.left = hover.layerX + "px";
+
+
+    
+    
+  }
+
+  function hideTooltip (ev) {
+    let ct = ev.target;
+    ct.style.stroke = "none";
+    let data_name = ct.dataset;
+    console.log(data_name)
+    ct.style.fill = data_name.fill;
+    tooltip.style.display = "none";
+  }
 
   function map_click_func(event) {
     const ct = event.target;

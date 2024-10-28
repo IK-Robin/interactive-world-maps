@@ -1,4 +1,4 @@
-<div class="tooltip" id="tooltip"> </div>
+<div class="ikr_map_tooltip" id="ikr_map_tooltip"> </div>
   <div class="detail" id="detail">
     <div id="close">
       <span>&#10005;</span>

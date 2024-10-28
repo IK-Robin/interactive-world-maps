@@ -62,7 +62,7 @@ input[type=color] {
   margin: 0;
 }
 
-.tooltip {
+.ikr_map_tooltip {
   /*pointer-events: none;
   */
   position: absolute;
@@ -89,11 +89,11 @@ input[type=color] {
   -o-border-radius: 5px;
 }
 
-.tooltip.active {
+.ikr_map_tooltip.active {
   display: block;
 }
 
-.tooltip::after {
+.ikr_map_tooltip::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -279,42 +279,6 @@ img {
 }
 
 .detail::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 100%;
-  width: 0;
-  height: 0;
-  margin-left: -10px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid white;
-}
-
-#tooltip {
-  pointer-events: none;
-  position: absolute;
-  font-size: 18px;
-  text-align: center;
-  background: white;
-  padding: 10px 15px;
-  z-index: 5;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto;
-  color: #21669e;
-  border-radius: 5px;
-  box-shadow: 0 0 0 1px #eee;
-  transform: translateX(-50%);
-  display: none;
-  -o-transform: translateX(-50%);
-}
-
-#tooltip.active {
-  display: block;
-}
-
-#tooltip::after {
   content: "";
   position: absolute;
   left: 50%;
