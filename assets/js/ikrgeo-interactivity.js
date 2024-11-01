@@ -99,13 +99,14 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
 
   function showTooltip(hover) {
-    let ct = hover.target;
+    let ct = hover.target; 
     let data_name = ct.dataset;
 
 
     // // add a stock color in map id
     ct.style.stroke = "black";
-    ct.style.fill = data_name.hover;
+  
+    ct.style.fill = data_name.hover ? data_name.hover: "";
     ct.style.cursor = "pointer";
 
     tooltip.style.display = "block";
@@ -128,7 +129,7 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     ct.style.stroke = "none";
     let data_name = ct.dataset;
     console.log(data_name)
-    ct.style.fill = data_name.fill;
+    ct.style.fill = data_name.fill ? data_name.fill: "";
     tooltip.style.display = "none";
   }
 
@@ -147,30 +148,34 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     }
 
 
-    if (Object.keys(data_set).length === 0) {
+    if(data_set.dataadded == 'true'){
+            // get the data from the dataset
+      ikrTitle.value = data_set.title? data_set.title  : '';
+
+      ikrdes.value = data_set.desc ?  data_set.desc : '';
+
+      hovecolor.value = data_set.hover ? data_set.hover  : '';
+
+      typeHovcolor.value = data_set.hover ? data_set.hover :  '';
+
+
+      fill_color.value = data_set.fill ? data_set.fill : '';
+      filltype.value = data_set.fill ? data_set.fill : '';
+      
+     
+      modal_link.value = data_set.link ? data_set.link: '';    
+
+         ikr_w_img_inp.value = data_set.img  ? data_set.img: ''     ;
+
+      // change the submit button value
+
+      rdata_submit_form.value = "Edit";
+    }  else  {
       ikrTitle.value = "";
       ikrdes.value = "";
       modal_link.value = '';
       ikr_w_img_inp.value = '';
       rdata_submit_form.value = "Submit";
-    } else {
-      // get the data from the dataset
-      ikrTitle.value = data_set.title;
-      ikrdes.value = data_set.desc;
-      hovecolor.value = data_set.hover;
-      typeHovcolor.value = data_set.hover;
-
-      fill_color.value = data_set.fill;
-      filltype.value = data_set.fill;
-      
-      console.log(modal_link)
-      modal_link.value = data_set.link
-      ikr_w_img_inp.value = data_set.img
-      
-
-      // change the submit button value
-
-      rdata_submit_form.value = "Edit";
       
 
 
@@ -376,6 +381,7 @@ function select_media_url(event,input_ele) {
               setColor.setAttribute("data-desc", data.map_des);
               setColor.setAttribute("data-img", data.map_img);
               setColor.setAttribute("data-link", data.map_link);
+              setColor.setAttribute("data-dataadded", 'true');
               setColor.style.fill = `${data.fill_color}`;
             } 
           });
