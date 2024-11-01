@@ -1,6 +1,13 @@
 <?php
+
+// add shortcode in the plugin 
+
+include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './includes/ikrwmap_shortcode.php';
+
+
+
 // add scripts on map plugin
-function add_rdat_scripts()
+function ikrwmap_add_rdat_scripts()
 {
 
     $ikr_world_map_current_screen = get_current_screen();
@@ -37,7 +44,7 @@ function add_rdat_scripts()
             array(
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'action' => 'rdata_save_data_add',
-                "feacth" => "rdata_fetch_data",
+                "feacth" => "ikrwmap_retrieveData_from_db",
                 "edit_data" => "ikr_world_map_edit",
                 "delete_data" => "ikr_world_mapDelete",
 
@@ -47,11 +54,11 @@ function add_rdat_scripts()
 }
 
 
-add_action('admin_enqueue_scripts', 'add_rdat_scripts');
+add_action('admin_enqueue_scripts', 'ikrwmap_add_rdat_scripts');
 
 
 // add style 
-function add_world_map_enqueue_style()
+function ikrwmap_add_world_map_add_style()
 {
 
 
@@ -69,13 +76,39 @@ function add_world_map_enqueue_style()
     }
 }
 
-add_action('admin_enqueue_scripts', 'add_world_map_enqueue_style');
+add_action('admin_enqueue_scripts', 'ikrwmap_add_world_map_add_style');
 
 
 
+// add front end script 
 
-function rdata_add_admin_menu_page()
+function ikrwmap_add_frontend_script()
 {
+
+
+
+    // Enqueue the script
+    if (is_single() && has_shortcode(get_the_content(), 'ikr_leflet_map')) {
+
+        // Enqueue Leaflet JS directly from CDN
+        wp_enqueue_script('ikrwmap-fontend-script', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-fontend-script.js', array(), '1.0.1', true);
+
+
+
+        wp_localize_script('ikrwmap-fontend-script', 'ikrwmap_get_url', [
+            'featchdata' => 'ikrwmap_retrieveData_from_db',
+
+        ]);
+        wp_enqueue_style('ikr_font_endcss', plugin_dir_url(__FILE__) . '../css/fontend_css.css', [], '1.0.1', 'all');
+    }
+}
+// Hook the function to the appropriate action
+add_action('wp_enqueue_scripts', 'ikrwmap_add_frontend_script');
+
+
+function ikrwmap_rdata_add_admin_menu_page()
+{
+
 
 
 ?>
@@ -85,13 +118,13 @@ function rdata_add_admin_menu_page()
             <div class="map-img">
 
                 <?php
-                include_once ROBIN_DIR_PATH_WORLD . './views/world-map.php';
+                include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './views/world-map.php';
                 // 
                 ?>
             </div>
             <div class="map-data-show">
                 <?php
-                include_once ROBIN_DIR_PATH_WORLD . './views/show-map-data.php';
+                include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './views/show-map-data.php';
                 ?>
             </div>
         </div>
@@ -100,19 +133,11 @@ function rdata_add_admin_menu_page()
         <div class="input-form">
             <?php
 
-            include_once ROBIN_DIR_PATH_WORLD . './views/from-data.php';
+            include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './views/from-data.php';
             ?>
         </div>
     </div>
 <?php
-
-
-
-
-
-
-
-
 
 
 
@@ -237,9 +262,9 @@ function ikr_world_map_edit()
                     '%s', // data type for 'title'
                     '%s', // data type for 'map_des'
                     '%s', // data type for 'hov_color'
-                    '%s' , // data type for 'fill_color'
+                    '%s', // data type for 'fill_color'
                     '%s',  // data type for 'fill_color'
-                    '%s' , // data type for 'fill_color'
+                    '%s', // data type for 'fill_color'
                 ],
                 [
                     '%s' // data type for 'map_id'
@@ -331,7 +356,7 @@ add_action('wp_ajax_noprive_ikr_world_mapDelete', 'ikr_world_mapDelete');
 
 //  get data from data base 
 // AJAX callback to fetch data from the database
-function rdata_fetch_data_from_database()
+function ikrwmap_retrieveData_from_db_from_database()
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'interactive_geo_maps';
@@ -342,5 +367,5 @@ function rdata_fetch_data_from_database()
     // Return the response
     wp_send_json_success($data);
 }
-add_action('wp_ajax_rdata_fetch_data', 'rdata_fetch_data_from_database');
-add_action('wp_ajax_nopriv_rdata_fetch_data', 'rdata_fetch_data_from_database');
+add_action('wp_ajax_ikrwmap_retrieveData_from_db', 'ikrwmap_retrieveData_from_db_from_database');
+add_action('wp_ajax_nopriv_ikrwmap_retrieveData_from_db', 'ikrwmap_retrieveData_from_db_from_database');

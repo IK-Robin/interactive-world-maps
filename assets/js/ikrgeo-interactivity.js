@@ -301,7 +301,7 @@ function select_media_url(event,input_ele) {
             console.log("Data successfully sent to the server.");
 
             // Fetch data from the database after the data is sent successfully
-            featch_data_from_db();
+            ikrwmap_retrive_data_from_db();
           } else {
             console.log("Failed to send data.");
           }
@@ -318,7 +318,7 @@ function select_media_url(event,input_ele) {
             console.log("Data successfully sent to the server.");
 
             // Fetch data from the database after the data is sent successfully
-            featch_data_from_db();
+            ikrwmap_retrive_data_from_db();
           } else {
             console.log("Failed to send data.");
           }
@@ -326,7 +326,7 @@ function select_media_url(event,input_ele) {
       );
     }
 
-    // featch_data_from_db();
+    // ikrwmap_retrive_data_from_db();
   });
 
   //  edit data from list
@@ -346,7 +346,7 @@ function select_media_url(event,input_ele) {
           console.log("Data successfully sent to the server.");
 
           // Fetch data from the database after the data is sent successfully
-          featch_data_from_db();
+          ikrwmap_retrive_data_from_db();
         } else {
           console.log("Failed to send data.");
         }
@@ -356,7 +356,7 @@ function select_media_url(event,input_ele) {
 
   // get the data asynconalsy
 
-  async function featch_data_from_db() {
+  async function ikrwmap_retrive_data_from_db() {
     try {
       // fetch the data from the db
       const response = await world_map_fetchAjaxRequest(
@@ -483,7 +483,7 @@ function select_media_url(event,input_ele) {
                         console.log("Data successfully sent to the server.");
             
                         // Fetch data from the database after the data is sent successfully
-                        featch_data_from_db();
+                        ikrwmap_retrive_data_from_db();
                       } else {
                         console.log("Failed to send data.");
                       }
@@ -511,5 +511,5 @@ function select_media_url(event,input_ele) {
 
 
 
-  featch_data_from_db();
+  ikrwmap_retrive_data_from_db();
 });

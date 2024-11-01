@@ -24,17 +24,17 @@
  */
 
  
-define("RBOIN_DIR_PATH", plugin_dir_path(__FILE__));
 
-if ( ! defined( 'ROBIN_DIR_PATH_WORLD' ) ) {
-   define( 'ROBIN_DIR_PATH_WORLD', plugin_dir_path( __FILE__ ) );
+
+if ( ! defined( 'IKRWMAP_ROBIN_DIR_PATH_WORLD' ) ) {
+   define( 'IKRWMAP_ROBIN_DIR_PATH_WORLD', plugin_dir_path( __FILE__ ) );
 }
 
-include_once ROBIN_DIR_PATH_WORLD . './functions/functions.php';
+include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './functions/functions.php';
 function rdata_add_menu_page()
 {
-   add_menu_page('interactive-world-map-robin', 'interactive-world-map-robin', 'manage_options', 'interactive-world-map-robin', 'rdata_add_admin_menu_page', '', 101);
-   add_submenu_page('interactive-world-map-robin', 'Dashbord', 'interactive world map', 'manage_options', 'interactive-world-map-robin', '', 'rdata_add_admin_menu_page');
+   add_menu_page('interactive-world-map-robin', 'interactive-world-map-robin', 'manage_options', 'interactive-world-map-robin', 'ikrwmap_rdata_add_admin_menu_page', '', 101);
+   add_submenu_page('interactive-world-map-robin', 'Dashbord', 'interactive world map', 'manage_options', 'interactive-world-map-robin', '', 'ikrwmap_rdata_add_admin_menu_page');
 
    // add show data submenu 
    add_submenu_page('interactive-world-map-robin', 'map-data', 'map-data', 'manage_options', 'interactive-world-map-robin', 'rdata_add_show_data', 101);
@@ -56,7 +56,7 @@ function rdata_add_show_data()
   
 
 
-<?php  include_once ROBIN_DIR_PATH_WORLD . '/views/show_data.php' ?>
+<?php  include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . '/views/show_data.php' ?>
 
 
    <?php
@@ -73,7 +73,7 @@ function rdata_add_show_data()
 }
 
 
-include_once RBOIN_DIR_PATH . './includes/db.php';
+include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './includes/db.php';
 
 register_activation_hook( __FILE__, 'rdata_plugin_create_tables' );
 
