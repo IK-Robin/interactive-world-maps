@@ -88,7 +88,7 @@ function ikrwmap_add_frontend_script()
 
 
     // Enqueue the script
-    if (is_single() && has_shortcode(get_the_content(), 'ikr_leflet_map')) {
+    if (is_single() && has_shortcode(get_the_content(), 'ikr_world_map')) {
 
         // Enqueue Leaflet JS directly from CDN
         wp_enqueue_script('ikrwmap-fontend-script', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-fontend-script.js', array(), '1.0.1', true);
@@ -97,6 +97,7 @@ function ikrwmap_add_frontend_script()
 
         wp_localize_script('ikrwmap-fontend-script', 'ikrwmap_get_url', [
             'featchdata' => 'ikrwmap_retrieveData_from_db',
+            'ajax_url' => admin_url('admin-ajax.php'),
 
         ]);
         wp_enqueue_style('ikr_font_endcss', plugin_dir_url(__FILE__) . '../css/fontend_css.css', [], '1.0.1', 'all');
