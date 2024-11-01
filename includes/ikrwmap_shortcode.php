@@ -10,6 +10,7 @@ function ikrwmap_shortcode_function() {
     <div id="ikrwmap_output">
     <object class="svg_img_obj" data=" <?php echo plugins_url( "../assets/images/worldmap.svg", __FILE__ )?>" ></object>
 
+    <img id="setImage" src="" alt="">
     </div>
     <?php
     // Get the buffered output and clean (flush) the buffer

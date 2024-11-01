@@ -2,8 +2,9 @@
     
     const ikrgooMap = document.querySelector(".svg_img_obj");
 
+    const setImage = document.getElementById('setImage');
 
-console.log(ikrgooMap)
+console.log(setImage)
     ikrgooMap.addEventListener("load", (irkcontent) => {
         // get the svg
         const ikrsvgDocc = ikrgooMap.contentDocument;
@@ -19,14 +20,19 @@ console.log(ikrgooMap)
           };
         
         });
-      
+       
         // select the svg path
         // console.log(tab)
       
         // map the item to  the dom and  add event listener
  
-      
-        console.log(items)
+items.forEach(svg_path =>{
+    svg_path.addEventListener("click",(ev) =>{
+if(ev.target.dataset.img){
+    setImage.src = ev.target.dataset.img
+}
+    });
+});
       
   
 
@@ -56,6 +62,8 @@ console.log(ikrgooMap)
                   const setColor = ikrsvg.querySelector(`#${mapId.id}`);
                  
                   setColor.style.fill = `${data.fill_color}`;
+                  setColor.setAttribute("data-img", data.map_img);
+              
                 } 
               });
             });
