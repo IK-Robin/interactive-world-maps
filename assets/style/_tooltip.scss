@@ -1,0 +1,163 @@
+
+/* add tooltip detail style  */
+.detail {
+    /* pointer-events: none; */
+    width: max-content;
+    max-width: 240px;
+    min-width: 150px;
+    z-index: 5;
+    max-height: max-content;
+    height: auto;
+    flex-shrink: 0;
+    margin: 20px auto;
+    overflow-wrap: break-word;
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 0;
+    box-shadow: 0 0 15px 0 rgb(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+
+  .detail::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transform: rotate(var(--rotate_value));
+  }
+  .ikr_detail_img img {
+    width: 100%;
+    height: auto;
+  }
+  .map_details {
+    text-align: center;
+    padding: 10px 8px 12px;
+  }
+  #detail_name {
+    font-size: 16px;
+    margin: 0 0 2px;
+  }
+  .detail_name {
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .ikr_detail_img {
+    width: 100%;
+    height: auto;
+    max-height: 120px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .map_title {
+    color: #000;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 auto;
+    padding-bottom: 5px;
+  }
+
+  .detail_des {
+    color: #000;
+    text-align: left;
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 2px !important;
+    font-weight: 400;
+    margin: 0;
+    padding-left: 34px;
+    padding-bottom: 12px;
+  }
+  .detail_des div {
+    position: relative;
+  }
+
+  .detail_des div::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    /* color: green; */
+    left: -20px;
+    background-color: green;
+    top: 3px;
+    text-align: center;
+  }
+
+  #btnTxt {
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+  .map_tooltip_button {
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    white-space: nowrap;
+    background: #1cbb64;
+    border: #1cbb64 solid 1px;
+    box-shadow: 0 1px 1px #0000001f;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 1rem;
+
+    min-width: 110px;
+    padding: 4px 16px;
+    width: max-content;
+    text-align: center;
+    margin: 10px auto 0;
+  }
+  @media screen and (max-width: 667px) {
+    .detail {
+      max-width: 130px;
+      min-width: 121px;
+    }
+    .map_details {
+      padding: 0px 0px 12px;
+    }
+
+    .detail_des {
+      padding-bottom: 12px;
+    }
+    .detail_des div::before {
+      width: 10px;
+      height: 10px;
+      left: -13px;
+      top: 6px;
+    }
+    .detail_des div {
+      font-size: 11px;
+    }
+    .detail_des div:nth-child(2) {
+      display: none;
+    }
+    .detail_des div:nth-child(3) {
+      display: none;
+    }
+    .detail_des div:nth-child(4) {
+      display: none;
+    }
+    .detail_des div:nth-child(5) {
+      display: none;
+    }
+    .map_title {
+      font-size: 15px;
+    }
+    .map_tooltip_button {
+      font-size: 13px;
+    }
+  }
