@@ -2,9 +2,7 @@
     
     const ikrgooMap = document.querySelector(".svg_img_obj");
 
-    const setImage = document.getElementById('setImage');
 
-console.log(setImage)
     ikrgooMap.addEventListener("load", (irkcontent) => {
         // get the svg
         const ikrsvgDocc = ikrgooMap.contentDocument;
@@ -29,7 +27,8 @@ console.log(setImage)
 items.forEach(svg_path =>{
     svg_path.addEventListener("click",(ev) =>{
 if(ev.target.dataset.img){
-    setImage.src = ev.target.dataset.img
+    // setImage.src = ev.target.dataset.img
+
 }
     });
 });

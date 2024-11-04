@@ -1,14 +1,21 @@
-<div class="ikr_map_tooltip" id="ikr_map_tooltip"> </div>
-  <div class="detail" id="detail">
-    <div id="close">
-      <span>&#10005;</span>
-    </div>
-   <div id="detail_img">
-      <img  src="" alt="" id="map_img">
-   </div>
-   <div class="map_details">
-    <p id="plotId"> id</p>
-    <h2 id="detail_name">The RV map 1 </h2>
-    <p id="detail_des">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore ratione recusandae doloribus quaerat, iste quia ipsa non nostrum magnam mollitia?</p>
-   </div>
-  </div>
+
+<?php 
+// tooltip page 
+?>
+
+<div class="detail" id="detail">
+        <div style="position: relative">
+          <div id="detail_img" class="ikr_detail_img">
+            <img src="" alt="" id="map_img" />
+          </div>
+          <div class="map_details">
+            <p id="plotId" class="map_title"></p>
+
+            <div id="detail_des" class="detail_des"></div>
+
+            <a id="btnTxt" class="map_tooltip_button" target="_blank" href="">
+              Details</a
+            >
+          </div>
+        </div>
+      </div>
