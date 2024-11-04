@@ -240,18 +240,18 @@ img {
   border-right: 10px solid transparent;
   transform: rotate(var(--rotate_value));
 }
-.detail .ikr_detail_img {
+.detail .c {
   width: 100%;
   height: auto;
   max-height: 120px;
   background: #fff;
   overflow: hidden;
 }
-.detail .ikr_detail_img img {
+.detail .c img {
   width: 100%;
   height: auto;
 }
-.detail .map_title {
+.detail .ikrmap_title {
   color: #000;
   text-align: center;
   font-family: Roboto;
@@ -262,11 +262,11 @@ img {
   margin: 0 auto;
   padding-bottom: 5px;
 }
-.detail .map_details {
+.detail .ikrwmap_details {
   text-align: center;
   padding: 10px 8px 12px;
 }
-.detail .map_details .detail_des {
+.detail .ikrwmap_details .ikrmap_detail_des {
   color: #000;
   text-align: left;
   font-family: Roboto;
@@ -278,10 +278,10 @@ img {
   padding-left: 34px;
   padding-bottom: 12px;
 }
-.detail .map_details .detail_des div {
+.detail .ikrwmap_details .ikrmap_detail_des div {
   position: relative;
 }
-.detail .map_details .detail_des div::before {
+.detail .ikrwmap_details .ikrmap_detail_des div::before {
   content: "";
   position: absolute;
   width: 15px;
@@ -292,12 +292,12 @@ img {
   top: 3px;
   text-align: center;
 }
-.detail .map_details #btnTxt {
+.detail .ikrwmap_details #btnTxt {
   color: white;
   text-decoration: none;
   text-transform: capitalize;
 }
-.detail .map_details .map_tooltip_button {
+.detail .ikrwmap_details .ikrwmap_tooltip_button {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -326,22 +326,22 @@ img {
     max-width: 130px;
     min-width: 121px;
   }
-  .detail .map_details {
+  .detail .ikrwmap_details {
     padding: 0px 0px 12px;
   }
-  .detail .map_details .map_title {
+  .detail .ikrwmap_details .ikrmap_title {
     font-size: 15px;
   }
-  .detail .map_details .map_tooltip_button {
+  .detail .ikrwmap_details .ikrwmap_tooltip_button {
     font-size: 13px;
   }
-  .detail .map_details .detail_des {
+  .detail .ikrwmap_details .ikrmap {
     padding-bottom: 12px;
   }
-  .detail .map_details .detail_des div {
+  .detail .ikrwmap_details .ikrmap div {
     font-size: 11px;
   }
-  .detail .map_details .detail_des div::before {
+  .detail .ikrwmap_details .ikrmap div::before {
     width: 10px;
     height: 10px;
     left: -13px;

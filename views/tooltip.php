@@ -6,13 +6,13 @@
 <div id="ikr_map_tooltip" class="ikr_map_tooltip"></div>
 <div class="detail" id="detail">
         <div style="position: relative">
-          <div id="detail_img" class="ikr_detail_img">
-            <img src="<?php echo plugins_url('../assets/images/worldmap.svg',__FILE__); ?>" alt="" id="map_img" />
+          <div id="detail_img" class="ikrwmap_detail_img">
+            <img src="<?php echo plugins_url('../assets/images/worldmap.svg',__FILE__); ?>" alt="" id="ikrwmap_detail_img" />
           </div>
-          <div class="map_details">
-            <p id="plotId" class="map_title"></p>
+          <div class="ikrwmap_details">
+            <h3 id="ikrmap_title" class="ikrmap_title"></h3>
 
-            <div id="detail_des" class="detail_des"></div>
+            <div id="ikrmap_detail_des" class="ikrmap_detail_des"></div>
 
             <a id="btnTxt" class="map_tooltip_button" target="_blank" href="">
               Details</a
