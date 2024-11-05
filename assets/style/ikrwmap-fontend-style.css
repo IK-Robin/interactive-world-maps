@@ -1,0 +1,45 @@
+/*edit modal form */
+.ikr_color_inp .ikr_w_typehove {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  border: 0;
+  border-radius: 51% !important;
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 51% !important;
+  -moz-border-radius: 51% !important;
+  -ms-border-radius: 51% !important;
+  -o-border-radius: 51% !important;
+  padding: 0 !important;
+}
+.ikr_color_inp .ikr_w_typehove:focus {
+  border: none;
+}
+.ikr_color_inp .ikr_w_typehove:active {
+  border: none;
+}
+.ikr_color_inp .ikr_w_hovecolor {
+  width: 100%;
+  /* max-height: 40px; */
+  padding: 7px;
+}
+
+.ikr_form_style label {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+.ikr_form_style input {
+  width: 100%;
+  padding: 7px;
+}
+.ikr_form_style input[type=submit] {
+  margin-top: 7px;
+}
+.ikr_form_style .ikr_select_img {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  max-width: 111px;
+  padding: 11px;
+}/*# sourceMappingURL=ikrwmap-fontend-style.css.map */
