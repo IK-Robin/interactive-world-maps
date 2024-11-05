@@ -42,7 +42,7 @@
   justify-content: center;
 }
 
-.rgeo_world_map_img {
+.ikrwmap_world_map_img {
   width: 80%;
   height: auto;
 }
@@ -211,7 +211,7 @@ img {
 }
 
 /* add tooltip detail style  */
-.detail {
+.ikrwmap_details_container {
   /* pointer-events: none; */
   width: -moz-max-content;
   width: max-content;
@@ -224,13 +224,14 @@ img {
   flex-shrink: 0;
   margin: 20px auto;
   overflow-wrap: break-word;
+  display: none;
   position: absolute;
   background: #fff;
   padding: 0;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 }
-.detail::after {
+.ikrwmap_details_container::after {
   content: "";
   position: absolute;
   width: 0;
@@ -240,18 +241,18 @@ img {
   border-right: 10px solid transparent;
   transform: rotate(var(--rotate_value));
 }
-.detail .c {
+.ikrwmap_details_container .ikrwmap_detail_img {
   width: 100%;
   height: auto;
   max-height: 120px;
   background: #fff;
   overflow: hidden;
 }
-.detail .c img {
+.ikrwmap_details_container .ikrwmap_detail_img img {
   width: 100%;
   height: auto;
 }
-.detail .ikrmap_title {
+.ikrwmap_details_container .ikrmap_title {
   color: #000;
   text-align: center;
   font-family: Roboto;
@@ -262,11 +263,11 @@ img {
   margin: 0 auto;
   padding-bottom: 5px;
 }
-.detail .ikrwmap_details {
+.ikrwmap_details_container .ikrwmap_details {
   text-align: center;
   padding: 10px 8px 12px;
 }
-.detail .ikrwmap_details .ikrmap_detail_des {
+.ikrwmap_details_container .ikrwmap_details .ikrmap_detail_des {
   color: #000;
   text-align: left;
   font-family: Roboto;
@@ -278,10 +279,10 @@ img {
   padding-left: 34px;
   padding-bottom: 12px;
 }
-.detail .ikrwmap_details .ikrmap_detail_des div {
+.ikrwmap_details_container .ikrwmap_details .ikrmap_detail_des div {
   position: relative;
 }
-.detail .ikrwmap_details .ikrmap_detail_des div::before {
+.ikrwmap_details_container .ikrwmap_details .ikrmap_detail_des div::before {
   content: "";
   position: absolute;
   width: 15px;
@@ -292,12 +293,12 @@ img {
   top: 3px;
   text-align: center;
 }
-.detail .ikrwmap_details #btnTxt {
+.ikrwmap_details_container #ikrwmap_btnTxt {
   color: white;
   text-decoration: none;
   text-transform: capitalize;
 }
-.detail .ikrwmap_details .ikrwmap_tooltip_button {
+.ikrwmap_details_container .ikrwmap_tooltip_button {
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -315,40 +316,40 @@ img {
   width: max-content;
   text-align: center;
   margin: 10px auto 0;
-  -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -ms-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -o-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -ms-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
 }
 
 @media screen and (max-width: 667px) {
-  .detail {
+  .ikrwmap_details_container {
     max-width: 130px;
     min-width: 121px;
   }
-  .detail .ikrwmap_details {
+  .ikrwmap_details_container .ikrwmap_details {
     padding: 0px 0px 12px;
   }
-  .detail .ikrwmap_details .ikrmap_title {
+  .ikrwmap_details_container .ikrwmap_details .ikrmap_title {
     font-size: 15px;
   }
-  .detail .ikrwmap_details .ikrwmap_tooltip_button {
+  .ikrwmap_details_container .ikrwmap_details .ikrwmap_tooltip_button {
     font-size: 13px;
   }
-  .detail .ikrwmap_details .ikrmap {
+  .ikrwmap_details_container .ikrwmap_details .ikrmap {
     padding-bottom: 12px;
   }
-  .detail .ikrwmap_details .ikrmap div {
+  .ikrwmap_details_container .ikrwmap_details .ikrmap div {
     font-size: 11px;
   }
-  .detail .ikrwmap_details .ikrmap div::before {
+  .ikrwmap_details_container .ikrwmap_details .ikrmap div::before {
     width: 10px;
     height: 10px;
     left: -13px;
     top: 6px;
   }
 }
-.ikr_map_tooltip {
+.ikrwmap_tooltip {
   /*pointer-events: none;
   */
   position: absolute;
@@ -375,11 +376,11 @@ img {
   -o-border-radius: 5px;
 }
 
-.ikr_map_tooltip.active {
+.ikrwmap_tooltip.active {
   display: block;
 }
 
-.ikr_map_tooltip::after {
+.ikrwmap_tooltip::after {
   content: "";
   position: absolute;
   left: 50%;

@@ -1,5 +1,5 @@
 /* add tooltip detail style  */
-.detail {
+.ikrwmap_details_container {
   /* pointer-events: none; */
   width: max-content;
   max-width: 240px;
@@ -10,7 +10,7 @@
   flex-shrink: 0;
   margin: 20px auto;
   overflow-wrap: break-word;
-  // display: none;
+  display: none;
   position: absolute;
   background: #fff;
   padding: 0;
@@ -27,7 +27,7 @@
     transform: rotate(var(--rotate_value));
   }
 
-  .c {
+  .ikrwmap_detail_img {
     width: 100%;
     height: auto;
     max-height: 120px;
@@ -82,43 +82,39 @@
         }
       }
     }
-    #btnTxt {
-      color: white;
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-    .ikrwmap_tooltip_button {
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      white-space: nowrap;
-      background: #1cbb64;
-      border: #1cbb64 solid 1px;
-      box-shadow: 0 1px 1px #0000001f;
-      color: #fff;
-      font-weight: 700;
-      border-radius: 3px;
-      font-size: 1rem;
-      min-width: 110px;
-      padding: 4px 16px;
-      width: max-content;
-      text-align: center;
-      margin: 10px auto 0;
-      -webkit-transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      -moz-transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      -ms-transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      -o-transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
+   
   }
+  #ikrwmap_btnTxt {
+    color: white;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+  .ikrwmap_tooltip_button {
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out,      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    white-space: nowrap;
+    background: #1cbb64;
+    border: #1cbb64 solid 1px;
+    box-shadow: 0 1px 1px #0000001f;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 3px;
+    font-size: 1rem;
+    min-width: 110px;
+    padding: 4px 16px;
+    width: max-content;
+    text-align: center;
+    margin: 10px auto 0;
+    -webkit-transition: background-color 0.15s ease-in-out,;
+    -moz-transition: background-color 0.15s ease-in-out,;
+    -ms-transition: background-color 0.15s ease-in-out,;
+    -o-transition: background-color 0.15s ease-in-out,;
+}
 }
 
 @media screen and (max-width: 667px) {
-  .detail {
+  .ikrwmap_details_container {
     max-width: 130px;
     min-width: 121px;
 
@@ -148,7 +144,7 @@
   }
 }
 
-.ikr_map_tooltip {
+.ikrwmap_tooltip {
   /*pointer-events: none;
 	*/
   position: absolute;
@@ -174,10 +170,10 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-.ikr_map_tooltip.active {
+.ikrwmap_tooltip.active {
   display: block;
 }
-.ikr_map_tooltip::after {
+.ikrwmap_tooltip::after {
   content: "";
   position: absolute;
   left: 50%;

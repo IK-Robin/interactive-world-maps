@@ -100,7 +100,7 @@ function ikrwmap_add_frontend_script()
             'ajax_url' => admin_url('admin-ajax.php'),
 
         ]);
-        // wp_enqueue_style('ikr_font_endcss', plugin_dir_url(__FILE__) . '../css/fontend_css.css', [], '1.0.1', 'all');
+        wp_enqueue_style('ikrwmap_frontend_css', plugin_dir_url(__FILE__) . '../assets/style/ikrwmap-fontend-style.css', [], '1.0.1', 'all');
     }
 }
 // Hook the function to the appropriate action
