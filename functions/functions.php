@@ -20,6 +20,7 @@ function ikrwmap_add_rdat_scripts()
         // wp_enqueue_script('featch_data_from_server',plugin_dir_url(__FILE__) . '../assets/js/your-custom.js');
         wp_enqueue_media();
         wp_enqueue_script('featch_data_from_server', plugin_dir_url(__FILE__) . '../assets/js/worldmap-global.js');
+        wp_enqueue_script('add_ikrwmap_image', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js');
 
         wp_enqueue_script(
             'bootstrapJs-proper',
@@ -93,7 +94,7 @@ function ikrwmap_add_frontend_script()
         // Enqueue Leaflet JS directly from CDN
         wp_enqueue_script('ikrwmap-fontend-script', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-fontend-script.js', array(), '1.0.1', true);
 
-
+        wp_enqueue_script('add_ikrwmap_image_frontend', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js');
 
         wp_localize_script('ikrwmap-fontend-script', 'ikrwmap_get_url', [
             'featchdata' => 'ikrwmap_retrieveData_from_db',
