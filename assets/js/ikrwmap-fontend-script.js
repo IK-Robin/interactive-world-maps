@@ -2,6 +2,30 @@ const ikrgooMap = document.querySelector(".svg_img_obj");
 const ikr_map_tooltip = document.getElementById("ikr_map_tooltip");
 const ikrwmap_details =document.getElementById('ikrwmap_details');
 const ikrwmap_output  = document.getElementById("ikrwmap_output");
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Create the SVG element and set attributes
+  const ikrwmap_svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  ikrwmap_svg.setAttribute("viewBox", "0 0 1000 640");
+  ikrwmap_svg.setAttribute("width", "100%");
+  ikrwmap_svg.setAttribute("height", "auto");
+  ikrwmap_svg.setAttribute("id", "svg4");
+
+
+  
+
+  // Set innerHTML of the SVG to include the path
+  ikrwmap_svg.innerHTML = world_map_img;
+
+  // Append the SVG to the output container
+  document.getElementById("ikrwmap_output").appendChild(ikrwmap_svg);
+});
+
+
+
+
+
+
+
 
 ikrgooMap.addEventListener("load", (irkcontent) => {
   // get the svg
