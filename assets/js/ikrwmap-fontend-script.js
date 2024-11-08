@@ -1,7 +1,11 @@
 const ikrgooMap = document.querySelector(".svg_img_obj");
 const ikr_map_tooltip = document.getElementById("ikr_map_tooltip");
 const ikrwmap_details =document.getElementById('ikrwmap_details');
+
+
 const ikrwmap_output  = document.getElementById("ikrwmap_output");
+const ikrwmap_outputs  = document.querySelectorAll(`[data-id="ikrwmap_output"]`);
+console.log(ikrwmap_details)
 
 
 document.addEventListener("DOMContentLoaded", (event) => {

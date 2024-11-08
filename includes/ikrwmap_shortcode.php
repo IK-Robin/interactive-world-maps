@@ -7,7 +7,7 @@ function ikrwmap_shortcode_function() {
     ob_start();
     ?>
     <!-- Output the <div> element with the specified ID "map" -->
-    <div id="ikrwmap_output">
+    <div id="ikrwmap_output" data-id="ikrwmap_output">
     <?php 
   include_once(IKRWMAP_ROBIN_DIR_PATH_WORLD . '/views/tooltip.php');
 ?>
