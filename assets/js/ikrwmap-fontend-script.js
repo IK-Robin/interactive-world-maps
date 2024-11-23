@@ -21,63 +21,85 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Set innerHTML of the SVG to include the path
   ikrwmap_svg.innerHTML = world_map_img;
 
+
+
   // Append the SVG to the output container
   document.getElementById("ikrwmap_output").appendChild(ikrwmap_svg);
-  const svg4 = document.getElementById('svg4');
+ 
+ // Store the data globally so it can be reused
+let mapDataCache = null;
 
-  let items = svg4.querySelectorAll("rect,path", "circle", "polygon");
+const svg4 = document.getElementById('svg4');
+let items = svg4.querySelectorAll("rect, path, circle, polygon");
 
+// Function to fetch and cache data from the database
+async function ikrwmap_retrieve_data_from_db() {
+  try {
+    // Fetch the data from the database
+    const response = await world_map_fetchAjaxRequest(
+      ikrwmap_get_url.featchdata,
+      ikrwmap_get_url.ajax_url
+    );
 
+    if (response.length === 0) {
+      console.log("No data retrieved from the database.");
+      return;
+    }
 
+    // Cache the data for later use
+    mapDataCache = response;
 
-    items.forEach((svg_path) => {
-    svg_path.addEventListener("click", (ev) => {
-      console.log(ev.offsetX)
-      const ct_dataset = ev.target.dataset;
-      if (ct_dataset.img || ct_dataset.link|| ct_dataset.title||ct_dataset.desc ) {
-        ikrwmap_details.style.display = "block";
-        ikrwmap_details.style.left = ev.pageX + "px";
-        ikrwmap_details.style.top = ev.pageY + "px";
-      }
+    // Apply initial styles based on the data
+    items.forEach((mapId) => {
+      mapDataCache.forEach((data) => {
+        if (mapId.id === data.map_id) {
+          const setColor = svg4.querySelector(`#${mapId.id}`);
+          setColor.style.fill = `${data.fill_color}`;
+          setColor.setAttribute("data-img", data.map_img);
+          setColor.setAttribute("data-link", data.map_link);
+          setColor.setAttribute("data-title", data.map_title);
+          setColor.setAttribute("data-desc", data.map_desc);
+        }
+      });
     });
+  } catch (err) {
+    console.error("Error fetching data:", err);
+  }
+}
+
+// Initialize the map by retrieving data
+ikrwmap_retrieve_data_from_db();
+
+// Add event listeners to the SVG elements
+items.forEach((svg_path) => {
+  // Click event
+  svg_path.addEventListener("click", (ev) => {
+    const ct_dataset = ev.target.dataset;
+    if (ct_dataset.img || ct_dataset.link || ct_dataset.title || ct_dataset.desc) {
+      ikrwmap_details.style.display = "block";
+      ikrwmap_details.style.left = ev.pageX + "px";
+      ikrwmap_details.style.top = ev.pageY + "px";
+      console.log(mapDataCache)
+    }
   });
 
-
-
-
- 
-   async function ikrwmap_retrive_data_from_db() {
-    try {
-      // fetch the data from the db
-      const response = await world_map_fetchAjaxRequest(
-        ikrwmap_get_url.featchdata,
-        ikrwmap_get_url.ajax_url
-      );
-
-      // console.log(response);
-      // check the  response status code
-
-      if (response.length == 0) {
-        return;
-      } else {
-        // set the color of  the map based on the data
-        items.forEach((mapId) => {
-          response.forEach((data) => {
-            if (mapId.id == data.map_id) {
-              const setColor = svg4.querySelector(`#${mapId.id}`);
-
-              setColor.style.fill = `${data.fill_color}`;
-              setColor.setAttribute("data-img", data.map_img);
-            }
-          });
-        });
+  // Mousemove event
+  svg_path.addEventListener("mousemove", (ev) => {
+    if (mapDataCache) {
+      const hoveredId = ev.target.id;
+      const data = mapDataCache.find((d) => d.map_id === hoveredId);
+      if (data) {
+        // console.log("Hovered data:", data);
+        // You can handle the mousemove logic here
       }
-    } catch (err) {
-      console.log(err);
     }
-  }
+  });
 
-  ikrwmap_retrive_data_from_db();
+  // Mouseout event
+  svg_path.addEventListener("mouseout", () => {
+    // ikrwmap_details.style.display = "none";
+  });
+});
 
 });
 

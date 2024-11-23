@@ -11,7 +11,7 @@ function ikrwmap_shortcode_function() {
     <?php 
   include_once(IKRWMAP_ROBIN_DIR_PATH_WORLD . '/views/tooltip.php');
 ?>
-    <object class="svg_img_obj" data=" <?php echo plugins_url( "../assets/images/worldmap.svg", __FILE__ )?>" ></object>
+    <!-- <object class="svg_img_obj" data=" <?php echo plugins_url( "../assets/images/worldmap.svg", __FILE__ )?>" ></object> -->
 
     </div>
     <?php
