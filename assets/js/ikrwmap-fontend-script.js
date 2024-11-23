@@ -8,38 +8,7 @@ console.log(ikrwmap_details);
 
 // all reusable functions and variables are defined in the top of the code. The main logic is in the `ikrwmap'
 
-function ikrwmap_f_showTooltip(hover) {
-  let ct = hover.target;
-  let data_name = ct.dataset;
 
-  // // add a stock color in map id
-  ct.style.stroke = "black";
-
-  ct.style.fill = data_name.hover ? data_name.hover : "";
-  ct.style.cursor = "pointer";
-
-  ikr_map_tooltip.style.display = "block";
-  ikr_map_tooltip.innerHTML = data_name.title;
-  let cx = hover.pageX;
-  let cy = hover.pageY;
-  ikr_map_tooltip.style.top = cy - 30 + "px";
-  ikr_map_tooltip.style.left = cx + "px";
-
-  // tooltip.style.top = hover.layerY + "px";
-  // tooltip.style.left = hover.layerX + "px";
-}
-
-// hide the tooltip
-
-function ikrwmap_f_hideTooltip(ev) {
-  let ct = ev.target;
-  ct.style.stroke = "none";
-  let data_name = ct.dataset;
-
-  ct.style.fill = data_name.fill ? data_name.fill : "";
-
-  ikr_map_tooltip.style.display = "none";
-}
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Create the SVG element and set attributes
@@ -86,12 +55,14 @@ async function ikrwmap_retrieve_data_from_db() {
           if (mapId.id === data.map_id) {
             const setColor = svg4.querySelector(`#${mapId.id}`);
             setColor.style.fill = `${data.fill_color}`;
-            setColor.setAttribute("data-fill", data.fill_color);
-            setColor.setAttribute("data-hover", data.hov_color);
-            setColor.setAttribute("data-img", data.map_img);
-            setColor.setAttribute("data-link", data.map_link);
-            setColor.setAttribute("data-title", data.map_title);
-            setColor.setAttribute("data-desc", data.map_desc);
+console.log(data.title)
+            // check the data null or empity 
+            setColor.setAttribute("data-fill", data.fill_color==null || ''? '': data.fill_color );
+            setColor.setAttribute("data-hover", data.hov_color ==null || ''? '': data.hov_color );
+            setColor.setAttribute("data-img", data.map_img ==null || ''? '': data.map_img );
+            setColor.setAttribute("data-link", data.map_link ==null || ''? '': data.map_link );
+            setColor.setAttribute("data-title", data.title == null|| ''? '' :data.title );
+            setColor.setAttribute("data-desc", data.map_desc == null|| ''?'': data.map_desc);
           }
         });
       });
@@ -142,9 +113,44 @@ async function ikrwmap_retrieve_data_from_db() {
 
       ikrwmap_f_hideTooltip(ev);
     });
+
+
   });
 });
 
+
+function ikrwmap_f_showTooltip(hover) {
+  let ct = hover.target;
+  let data_name = ct.dataset;
+
+  // // add a stock color in map id
+  ct.style.stroke = "black";
+
+  ct.style.fill = data_name.hover ? data_name.hover : "";
+  ct.style.cursor = "pointer";
+
+  ikr_map_tooltip.style.display = "block";
+  ikr_map_tooltip.innerHTML = data_name.title ==''? data_name.name: data_name.title;
+  let cx = hover.pageX;
+  let cy = hover.pageY;
+  ikr_map_tooltip.style.top = cy - 30 + "px";
+  ikr_map_tooltip.style.left = cx + "px";
+
+  // tooltip.style.top = hover.layerY + "px";
+  // tooltip.style.left = hover.layerX + "px";
+}
+
+// hide the tooltip
+
+function ikrwmap_f_hideTooltip(ev) {
+  let ct = ev.target;
+  ct.style.stroke = "none";
+  let data_name = ct.dataset;
+
+  ct.style.fill = data_name.fill ? data_name.fill : "";
+
+  ikr_map_tooltip.style.display = "none";
+}
 
 function world_map_fetchAjaxRequest(actions, ajaxurl) {
   return new Promise((resolve, reject) => {
