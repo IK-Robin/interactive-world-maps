@@ -64,7 +64,7 @@ async function ikrwmap_retrieve_data_from_db() {
             setColor.setAttribute("data-img", data.map_img ==null || ''? '': data.map_img );
             setColor.setAttribute("data-link", data.map_link ==null || ''? '': data.map_link );
             setColor.setAttribute("data-title", data.title == null|| ''? '' :data.title );
-            setColor.setAttribute("data-desc", data.map_desc == null|| ''?'': data.map_desc);
+            setColor.setAttribute("data-desc", data.map_des == null|| ''?'': data.map_des);
           }
         });
       });
@@ -80,7 +80,51 @@ async function ikrwmap_retrieve_data_from_db() {
   items.forEach((svg_path) => {
     // Click event
     svg_path.addEventListener("click", (ev) => {
-      const ct_dataset = ev.target.dataset;
+      ikrwmap_click_map_event(ev);
+    });
+    
+    
+
+    // Mousemove event
+    svg_path.addEventListener("mousemove", (ev) => {
+      if (mapDataCache) {
+        const hoveredId = ev.target.id;
+        const data = mapDataCache.find((d) => d.map_id === hoveredId);
+        if (data) {
+          console.log("Hovered data:", data);
+          // You can handle the mousemove logic here
+          ikrwmap_f_showTooltip(ev);
+        }
+      }
+    });
+
+
+    svg_path.addEventListener("touchmove", (ev) => {
+      ev.preventDefault(); // Prevent scrolling while moving
+      ikrwmap_f_showTooltip(ev);
+    });
+
+
+    // Mouseout event
+    svg_path.addEventListener("mouseout", (ev) => {
+    //  console.log(ev)
+      // ikr_map_tooltip.style.display = "none";
+      
+
+      ikrwmap_f_hideTooltip(ev);
+    });
+
+    svg_path.addEventListener("touchend", () => {
+     
+      ikrwmap_f_hideTooltip(ev);
+    });
+
+
+  });
+});
+
+function ikrwmap_click_map_event(ev) {
+  const ct_dataset = ev.target.dataset;
     
       // Check if any dataset value is non-empty to show the tooltip
       if (
@@ -99,7 +143,7 @@ async function ikrwmap_retrieve_data_from_db() {
           <h3 id="ikrmap_title" class="ikrmap_title">
             ${ct_dataset.title ? ct_dataset.title : ""}
           </h3> 
-          
+          <p>${ct_dataset.desc ? ct_dataset.desc : ""}</p>
         `;
     
         // Show or hide the image container based on the 'img' dataset
@@ -116,36 +160,7 @@ async function ikrwmap_retrieve_data_from_db() {
           ikrmap_detail_des.style.display = "none"; // Hide image container if 'img' is empty
         }
       } 
-    });
-    
-    
-
-    // Mousemove event
-    svg_path.addEventListener("mousemove", (ev) => {
-      if (mapDataCache) {
-        const hoveredId = ev.target.id;
-        const data = mapDataCache.find((d) => d.map_id === hoveredId);
-        if (data) {
-          // console.log("Hovered data:", data);
-          // You can handle the mousemove logic here
-          ikrwmap_f_showTooltip(ev);
-        }
-      }
-    });
-
-    // Mouseout event
-    svg_path.addEventListener("mouseout", (ev) => {
-    //  console.log(ev)
-      // ikr_map_tooltip.style.display = "none";
-      
-
-      ikrwmap_f_hideTooltip(ev);
-    });
-
-
-  });
-});
-
+}
 
 function ikrwmap_f_showTooltip(hover) {
   let ct = hover.target;
