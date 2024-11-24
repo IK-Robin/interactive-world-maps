@@ -4,8 +4,10 @@ const ikrwmap_details = document.getElementById("ikrwmap_details");
 
 const ikrwmap_output = document.getElementById("ikrwmap_output");
 const ikrwmap_outputs = document.querySelectorAll(`[data-id="ikrwmap_output"]`);
-console.log(ikrwmap_details);
 
+const ikrwmap_detail_img = document.getElementById("ikrwmap_detail_img"); 
+const detail_img_container = document.getElementById("detail_img"); 
+const ikrmap_detail_des = document.getElementById('ikrmap_detail_des')
 // all reusable functions and variables are defined in the top of the code. The main logic is in the `ikrwmap'
 
 
@@ -55,7 +57,7 @@ async function ikrwmap_retrieve_data_from_db() {
           if (mapId.id === data.map_id) {
             const setColor = svg4.querySelector(`#${mapId.id}`);
             setColor.style.fill = `${data.fill_color}`;
-console.log(data.title)
+// console.log(data.title)
             // check the data null or empity 
             setColor.setAttribute("data-fill", data.fill_color==null || ''? '': data.fill_color );
             setColor.setAttribute("data-hover", data.hov_color ==null || ''? '': data.hov_color );
@@ -79,18 +81,44 @@ console.log(data.title)
     // Click event
     svg_path.addEventListener("click", (ev) => {
       const ct_dataset = ev.target.dataset;
+    
+      // Check if any dataset value is non-empty to show the tooltip
       if (
-        ct_dataset.img ||
-        ct_dataset.link ||
-        ct_dataset.title ||
-        ct_dataset.desc
+        (ct_dataset.img && ct_dataset.img.trim() !== "") || // Ensure img is not empty
+        (ct_dataset.link && ct_dataset.link.trim() !== "") || // Ensure link is not empty
+        (ct_dataset.title && ct_dataset.title.trim() !== "") || // Ensure title is not empty
+        (ct_dataset.desc && ct_dataset.desc.trim() !== "") // Ensure desc is not empty
       ) {
+        // Show the tooltip
         ikrwmap_details.style.display = "block";
         ikrwmap_details.style.left = ev.pageX + "px";
         ikrwmap_details.style.top = ev.pageY + "px";
-        console.log(mapDataCache);
-      }
+    
+        // Update title and description
+        ikrmap_detail_des.innerHTML = `
+          <h3 id="ikrmap_title" class="ikrmap_title">
+            ${ct_dataset.title ? ct_dataset.title : ""}
+          </h3> 
+          
+        `;
+    
+        // Show or hide the image container based on the 'img' dataset
+        if (ct_dataset.img && ct_dataset.img.trim() !== "") {
+          ikrwmap_detail_img.src = ct_dataset.img; // Set the image if it's available
+          detail_img_container.style.display = "block"; // Show image container
+        } else {
+          detail_img_container.style.display = "none"; // Hide image container if 'img' is empty
+        }
+        if (ct_dataset.title && ct_dataset.title.trim() !== "") {
+          ikrmap_detail_des.src = ct_dataset.title; // Set the image if it's available
+          ikrmap_detail_des.style.display = "block"; // Show image container
+        } else {
+          ikrmap_detail_des.style.display = "none"; // Hide image container if 'img' is empty
+        }
+      } 
     });
+    
+    
 
     // Mousemove event
     svg_path.addEventListener("mousemove", (ev) => {
@@ -98,7 +126,7 @@ console.log(data.title)
         const hoveredId = ev.target.id;
         const data = mapDataCache.find((d) => d.map_id === hoveredId);
         if (data) {
-          console.log("Hovered data:", data);
+          // console.log("Hovered data:", data);
           // You can handle the mousemove logic here
           ikrwmap_f_showTooltip(ev);
         }
@@ -107,7 +135,7 @@ console.log(data.title)
 
     // Mouseout event
     svg_path.addEventListener("mouseout", (ev) => {
-     console.log(ev)
+    //  console.log(ev)
       // ikr_map_tooltip.style.display = "none";
       
 

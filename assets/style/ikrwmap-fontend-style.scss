@@ -33,6 +33,7 @@
     max-height: 120px;
     background: #fff;
     overflow: hidden;
+    display: none;
     img {
       width: 100%;
       height: auto;
@@ -63,7 +64,7 @@
       margin-bottom: 2px !important;
       font-weight: 400;
       margin: 0;
-      padding-left: 34px;
+    
       padding-bottom: 12px;
 
       div {
