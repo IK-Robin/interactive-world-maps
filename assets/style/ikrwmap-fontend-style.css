@@ -81,6 +81,12 @@
   top: 3px;
   text-align: center;
 }
+.ikrwmap_details_container .ikrwmap_details .ikrmap_detail_des p {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+}
 .ikrwmap_details_container #ikrwmap_btnTxt {
   color: white;
   text-decoration: none;
@@ -103,7 +109,7 @@
   width: -moz-max-content;
   width: max-content;
   text-align: center;
-  margin: 10px auto 0;
+  margin: 0px auto 0;
   -webkit-transition: background-color 0.15s ease-in-out;
   -moz-transition: background-color 0.15s ease-in-out;
   -ms-transition: background-color 0.15s ease-in-out;
@@ -112,7 +118,7 @@
 
 @media screen and (max-width: 667px) {
   .ikrwmap_details_container {
-    max-width: 130px;
+    max-width: 172px;
     min-width: 121px;
   }
   .ikrwmap_details_container .ikrwmap_details {
