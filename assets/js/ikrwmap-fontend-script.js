@@ -88,6 +88,11 @@ async function ikrwmap_retrieve_data_from_db() {
     });
 
 
+    svg_path.addEventListener('touchend',(ev) =>{
+      // change the orginal color to hover color
+      ev.preventDefault();
+      ikrwmap_f_hideTooltip(ev);
+    });
 
     }else{
 
@@ -144,9 +149,9 @@ svg_path.addEventListener("mousemove", (ev) => {
 });
 
 function ikrwmap_click_map_event(ev) {
-  
-  const ct_dataset = ev.target.dataset;
-    
+  const ct = ev.target;
+  const ct_dataset = ct.dataset;
+  let data_name = ct.dataset;
     
   // check the event type 
 
@@ -156,6 +161,7 @@ function ikrwmap_click_map_event(ev) {
   }else if(ev.type == 'touchstart'){
     ikrwmap_details.style.left = ev.touches[0].pageX + "px";
     ikrwmap_details.style.top = ev.touches[0].pageY + "px";
+    ct.style.fill = data_name.hover ? data_name.hover : "";
   }
 
 
