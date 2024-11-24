@@ -78,54 +78,88 @@ async function ikrwmap_retrieve_data_from_db() {
 
   // Add event listeners to the SVG elements
   items.forEach((svg_path) => {
-    // Click event
+    // check the device mobile or desktop
+    if(isMobile()){
+
+      
+    svg_path.addEventListener("touchstart", (ev) => {
+      ev.preventDefault(); // Prevent scrolling while moving
+      ikrwmap_click_map_event(ev);
+    });
+
+
+
+    }else{
+
+       // Click event
     svg_path.addEventListener("click", (ev) => {
       ikrwmap_click_map_event(ev);
     });
-    
-    
-
-    // Mousemove event
-    svg_path.addEventListener("mousemove", (ev) => {
-      if (mapDataCache) {
-        const hoveredId = ev.target.id;
-        const data = mapDataCache.find((d) => d.map_id === hoveredId);
-        if (data) {
-          console.log("Hovered data:", data);
-          // You can handle the mousemove logic here
-          ikrwmap_f_showTooltip(ev);
-        }
-      }
-    });
 
 
-    svg_path.addEventListener("touchmove", (ev) => {
-      ev.preventDefault(); // Prevent scrolling while moving
+// Mousemove event
+svg_path.addEventListener("mousemove", (ev) => {
+  if (mapDataCache) {
+    const hoveredId = ev.target.id;
+    const data = mapDataCache.find((d) => d.map_id === hoveredId);
+    if (data) {
+      console.log("Hovered data:", data);
+      // You can handle the mousemove logic here
       ikrwmap_f_showTooltip(ev);
-    });
+    }
+  }
+});
 
 
     // Mouseout event
     svg_path.addEventListener("mouseout", (ev) => {
-    //  console.log(ev)
-      // ikr_map_tooltip.style.display = "none";
-      
+      //  console.log(ev)
+        // ikr_map_tooltip.style.display = "none";
+        
+  
+        ikrwmap_f_hideTooltip(ev);
+      });
 
-      ikrwmap_f_hideTooltip(ev);
-    });
+    }
+   
+    
+    
 
-    svg_path.addEventListener("touchend", () => {
+    
+
+
+
+
+
+    // svg_path.addEventListener("touchend", () => {
      
-      ikrwmap_f_hideTooltip(ev);
-    });
+    //   ikrwmap_f_hideTooltip(ev);
+    // });
+    // svg_path.addEventListener("touchcancel", ikrwmap_f_hideTooltip);
 
 
   });
+
+
 });
 
 function ikrwmap_click_map_event(ev) {
+  
   const ct_dataset = ev.target.dataset;
     
+    
+  // check the event type 
+
+  if(ev.type =='click'){
+    ikrwmap_details.style.left = ev.pageX + "px";
+    ikrwmap_details.style.top = ev.pageY + "px";
+  }else if(ev.type == 'touchstart'){
+    ikrwmap_details.style.left = ev.touches[0].pageX + "px";
+    ikrwmap_details.style.top = ev.touches[0].pageY + "px";
+  }
+
+
+
       // Check if any dataset value is non-empty to show the tooltip
       if (
         (ct_dataset.img && ct_dataset.img.trim() !== "") || // Ensure img is not empty
@@ -135,8 +169,7 @@ function ikrwmap_click_map_event(ev) {
       ) {
         // Show the tooltip
         ikrwmap_details.style.display = "block";
-        ikrwmap_details.style.left = ev.pageX + "px";
-        ikrwmap_details.style.top = ev.pageY + "px";
+      
     
         // Update title and description
         ikrmap_detail_des.innerHTML = `
@@ -188,11 +221,13 @@ function ikrwmap_f_showTooltip(hover) {
 
 function ikrwmap_f_hideTooltip(ev) {
   let ct = ev.target;
-  ct.style.stroke = "none";
   let data_name = ct.dataset;
 
+  // Reset styles
+  ct.style.stroke = "none";
   ct.style.fill = data_name.fill ? data_name.fill : "";
 
+  // Hide the tooltip
   ikr_map_tooltip.style.display = "none";
 }
 
@@ -222,4 +257,11 @@ function world_map_fetchAjaxRequest(actions, ajaxurl) {
 
     xhr.send(`action=${actions}`);
   });
+}
+
+ // chekc it mobile or not 
+ function isMobile() {
+  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+ 
+  return regex.test(navigator.userAgent);
 }
