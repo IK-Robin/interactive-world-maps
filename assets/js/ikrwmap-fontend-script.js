@@ -175,14 +175,18 @@ function ikrwmap_click_map_event(ev) {
 
   let tooltipX = 0;
   let tooltipY = 0;
-console.log(ev.pageX)
+console.log( 'page x ',ev.pageX)
+console.log( 'page y ',ev.pageY)
   // Check if it's the first click
    if (isFirstClick) {
 
     if(ev.type == 'click'){
+     
       if (screenWidth < 500 && ev.pageX > 120) {
         ikrwmap_details.style.left =
           ev.pageX - 150  + "px";
+      } else if (screenWidth <900 && ev.pageX < 120){
+        ikrwmap_details.style.left = ev.pageX + ev.pageX + "px";
       } else if (screenWidth > 500) {
         ikrwmap_details.style.left =
           ev.pageX - ikrwmap_details.offsetWidth + "px";
@@ -190,7 +194,7 @@ console.log(ev.pageX)
     
       if(ev.pageY >=400)  {
     
-        ikrwmap_details.style.top =ev.pageY + ikrwmap_details.offsetHeight +30+ "px";   
+        ikrwmap_details.style.top =ev.pageY - ikrwmap_details.offsetHeight/2  + "px";   
         
       }else{
         ikrwmap_details.style.top =ev.pageY + "px";   
@@ -220,55 +224,138 @@ console.log(ev.pageX)
 }else{
 
     // Determine the event type: click or touchstart
-    if (ev.type === "click") {
-      const clickX = ev.pageX;
-      const clickY = ev.pageY;
-
-      // Horizontal position for click
-      if (clickX + tooltipWidth > screenWidth) {
-        tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
-      } else if (clickX < 10) {
-        tooltipX = 10; // Align to the left edge
-      } else {
-        tooltipX = clickX; // Place at cursor position
-      }
-
-      // Vertical position for click
-      if (clickY + tooltipHeight > screenHeight) {
-        tooltipY = screenHeight - tooltipHeight - 10; // Align to the bottom edge
-      } else if (clickY < 10) {
-        tooltipY = 10; // Align to the top edge
-      } else {
-        tooltipY = clickY; // Place at cursor position
-      }
-    } else if (ev.type === "touchstart") {
-      const touchX = ev.touches[0].pageX;
-      const touchY = ev.touches[0].pageY;
-
-      // Horizontal position for touch
-      if (touchX + tooltipWidth > screenWidth) {
-        tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
-      } else if (touchX < 10) {
-        tooltipX = 10; // Align to the left edge
-      } else {
-        tooltipX = touchX; // Place at touch position
-      }
-
-      // Vertical position for touch
-      if (touchY + tooltipHeight > screenHeight) {
-        tooltipY = screenHeight - tooltipHeight - 10; // Align to the bottom edge
-      } else if (touchY < 10) {
-        tooltipY = 10; // Align to the top edge
-      } else {
-        tooltipY = touchY; // Place at touch position
-      }
-
-      
-  // Update tooltip position
-  ikrwmap_details.style.left = `${tooltipX}px`;
-  ikrwmap_details.style.top = `${tooltipY}px`;
+    // tool tip show bottom 
+    // if (ev.type === "click") {
+    //   const clickX = ev.pageX;
+    //   const clickY = ev.pageY;
+    //   const tooltipWidth = ikrwmap_details.offsetWidth;
+    //   const tooltipHeight = ikrwmap_details.offsetHeight;
+    //   const screenWidth = window.innerWidth;
+    //   const screenHeight = window.innerHeight;
     
+    //   let tooltipX = clickX; // Default horizontal position
+    //   let tooltipY = clickY + 20; // Default vertical position below the cursor (20px offset)
+    
+    //   // Horizontal position for click
+    //   if (clickX + tooltipWidth > screenWidth) {
+    //     tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
+    //   } else if (clickX < 10) {
+    //     tooltipX = 10; // Align to the left edge
+    //   } else {
+    //     tooltipX = clickX - tooltipWidth / 2; // Center horizontally around the cursor
+    //   }
+    
+    //   // Vertical position for click (always below the cursor)
+    //   if (tooltipY + tooltipHeight > screenHeight) {
+    //     // If there's not enough space below, position tooltip above the cursor
+    //     tooltipY = clickY - tooltipHeight - 20;
+    //   }
+    
+    //   // Update tooltip position
+    //   ikrwmap_details.style.left = `${tooltipX}px`;
+    //   ikrwmap_details.style.top = `${tooltipY}px`;
+    
+    //   console.log("Tooltip Position:", { x: tooltipX, y: tooltipY });
+    // }
+
+    // show the cursor bottom 
+    if (ev.type === "click") {
+      const clickX = ev.pageX; // Cursor's X position
+      const clickY = ev.pageY; // Cursor's Y position
+      const tooltipWidth = ikrwmap_details.offsetWidth;
+      const tooltipHeight = ikrwmap_details.offsetHeight;
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+    
+      let tooltipX = clickX - tooltipWidth / 2; // Center the tooltip horizontally around the cursor
+      let tooltipY = clickY - tooltipHeight - 10; // Position the tooltip above the cursor (10px offset)
+    
+      // Ensure the tooltip doesn't overflow horizontally
+      if (tooltipX + tooltipWidth > screenWidth) {
+        tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
+      } else if (tooltipX < 10) {
+        tooltipX = 10; // Align to the left edge
+      }
+    
+      // Ensure the tooltip doesn't overflow vertically
+      if (tooltipY < 10) {
+        tooltipY = clickY + 10; // If not enough space above, move it below the cursor
+      }
+    
+      // Update tooltip position
+      ikrwmap_details.style.left = `${tooltipX}px`;
+      ikrwmap_details.style.top = `${tooltipY}px`;
+    
+      console.log("Tooltip Position:", { x: tooltipX, y: tooltipY });
+    }
+        
+    
+    // show tooltip cursor top 
+    
+    // else if (ev.type === "touchstart") {
+    //   const touchX = ev.touches[0].pageX;
+    //   const touchY = ev.touches[0].pageY;
+    
+    //   let tooltipX = touchX; // Default horizontal position
+    //   let tooltipY = touchY - tooltipHeight - 10; // Default vertical position above the touch point (10px offset)
+    
+    //   // Horizontal position for touch
+    //   if (touchX + tooltipWidth > screenWidth) {
+    //     tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
+    //   } else if (touchX < 10) {
+    //     tooltipX = 10; // Align to the left edge
+    //   } else {
+    //     tooltipX = touchX - tooltipWidth / 2; // Center horizontally around the touch point
+    //   }
+    
+    //   // Vertical position for touch (always above the touch point)
+    //   if (tooltipY < 10) {
+    //     // If there's not enough space above, adjust to fit within the screen
+    //     tooltipY = 10;
+    //   }
+    
+    //   // Update tooltip position
+    //   ikrwmap_details.style.left = `${tooltipX}px`;
+    //   ikrwmap_details.style.top = `${tooltipY}px`;
+    
+    //   console.log("Tooltip Position (Touchstart):", { x: tooltipX, y: tooltipY });
+    // }
+    
+
+  // show tooltip cursor bottom 
+  else if (ev.type === "touchstart") {
+    const touchX = ev.touches[0].pageX;
+    const touchY = ev.touches[0].pageY;
+    const tooltipWidth = ikrwmap_details.offsetWidth;
+    const tooltipHeight = ikrwmap_details.offsetHeight;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+  
+    let tooltipX = touchX; // Default horizontal position
+    let tooltipY = touchY + 20; // Default vertical position below the touch point (20px offset)
+  
+    // Horizontal position for touch
+    if (touchX + tooltipWidth > screenWidth) {
+      tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
+    } else if (touchX < 10) {
+      tooltipX = 10; // Align to the left edge
+    } else {
+      tooltipX = touchX - tooltipWidth / 2; // Center horizontally around the touch point
+    }
+  
+    // Vertical position for touch (always below the touch point)
+    if (tooltipY + tooltipHeight > screenHeight) {
+      // If there's not enough space below, adjust to fit within the screen
+      tooltipY = screenHeight - tooltipHeight - 10;
+    }
+  
+    // Update tooltip position
+    ikrwmap_details.style.left = `${tooltipX}px`;
+    ikrwmap_details.style.top = `${tooltipY}px`;
+  
+    console.log("Tooltip Position (Touchstart):", { x: tooltipX, y: tooltipY });
   }
+  
 
 }
 
