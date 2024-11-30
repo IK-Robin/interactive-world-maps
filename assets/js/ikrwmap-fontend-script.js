@@ -1,6 +1,8 @@
 const ikrgooMap = document.querySelector(".svg_img_obj");
 const ikr_map_tooltip = document.getElementById("ikr_map_tooltip");
 const ikrwmap_details = document.getElementById("ikrwmap_details");
+const ikrwmap_btnTxt= document.getElementById('ikrwmap_btnTxt');
+
 
 const ikrwmap_output = document.getElementById("ikrwmap_output");
 const ikrwmap_outputs = document.querySelectorAll(`[data-id="ikrwmap_output"]`);
@@ -140,6 +142,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // svg_path.addEventListener("touchcancel", ikrwmap_f_hideTooltip);
   });
 
+  window.addEventListener('click', (ev) => {
+    // Check if the click is within ikrwmap_details
+    if (ikrwmap_details.contains(ev.target)) {
+        return; // Do nothing if the click is inside ikrwmap_details
+    }
+
+    let matchFound = false;
+    let i = 0;
+
+    do {
+        if (mapDataCache[i].map_id == ev.target.id) {
+            matchFound = true;
+            break;
+        }
+        i++;
+    } while (i < mapDataCache.length);
+
+    // If no match was found, hide the tooltip
+    if (!matchFound) {
+        ikrwmap_details.style.display = 'none';
+    }
+});
 
 });
 
@@ -381,7 +405,13 @@ console.log( 'page y ',ev.pageY)
     } else {
       detail_img_container.style.display = "none"; // Hide if no image
     }
-
+    if (ct_dataset.link && ct_dataset.link.trim() !== "") {
+      ikrwmap_btnTxt.href= ct_dataset.link; // Set link
+      ikrwmap_btnTxt.style.display = "block"; // Show image container
+    } else {
+      ikrwmap_btnTxt.style.display = "none"; // Hide if no image
+    }
+     
     // Show tooltip
     ikrwmap_details.style.display = "block";
   } else {
@@ -396,10 +426,15 @@ console.log( 'page y ',ev.pageY)
 
 
 
-const closeDetail = document.getElementById("closeDetail");
-closeDetail.addEventListener("click", () => {
-  ikrwmap_details.style.display = "none";
-});
+// const closeDetail = document.getElementById("closeDetail");
+// closeDetail.addEventListener("click", () => {
+//   ikrwmap_details.style.display = "none";
+// });
+
+
+
+
+
 function ikrwmap_f_showTooltip(hover) {
   let ct = hover.target;
   let data_name = ct.dataset;
