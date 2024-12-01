@@ -393,7 +393,7 @@ console.log( 'page y ',ev.pageY)
     // Populate the tooltip content
     ikrmap_detail_des.innerHTML = `
       <h3 id="ikrmap_title" class="ikrmap_title">
-        ${ct_dataset.title ? ct_dataset.title : ct_dataset.name}
+        ${ct_dataset.title && ct_dataset.title !=='' ? ct_dataset.title : ct_dataset.name}
       </h3> 
       <p>${ct_dataset.desc ? ct_dataset.desc : ""}</p>
     `;
@@ -447,7 +447,7 @@ function ikrwmap_f_showTooltip(hover) {
 
   ikr_map_tooltip.style.display = "block";
   // ikr_map_tooltip.innerHTML = data_name.title ==''? data_name.name: data_name.title;
-  ikr_map_tooltip.innerHTML = data_name.name;
+  ikr_map_tooltip.innerHTML =     ` ${data_name.title && data_name.title !=='' ? data_name.title : data_name.name}`
   let cx = hover.pageX;
   let cy = hover.pageY;
   ikr_map_tooltip.style.top = cy - 30 + "px";
