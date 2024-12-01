@@ -129,6 +129,7 @@ function ikrwmap_rdata_add_admin_menu_page()
                 include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './views/show-map-data.php';
                 ?>
             </div>
+            <div id="successMessage" class="hidden">Form submitted successfully!</div>
         </div>
 
 

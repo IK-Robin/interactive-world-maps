@@ -12,6 +12,7 @@
 ?>
 <object class="svg_img_obj" data=" <?php echo plugins_url( "../assets/images/worldmap.svg", __FILE__ )?>" ></object>
 
+<div id="successMessage" class="ikrwmap_hidden">Form submitted successfully!</div>
 </div> 
 
 

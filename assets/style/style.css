@@ -164,6 +164,27 @@ img {
   border-spacing: 0 8px; /* Adds spacing only between rows */
 }
 
+#successMessage {
+  position: fixed;
+  top: 38px;
+  right: 31px;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+}
+
+#successMessage.ikrwmap_show {
+  opacity: 1;
+}
+
+.ikrwmap_hidden {
+  display: none;
+}
+
 /*edit modal form */
 .ikr_color_inp .ikr_w_typehove {
   position: absolute;
