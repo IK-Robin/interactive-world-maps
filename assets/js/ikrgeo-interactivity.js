@@ -6,7 +6,7 @@ const detail = document.getElementById("detail");
 const form_inp = document.getElementById("rdata_from");
 
 const map_id = document.getElementById("map_id");
-console.log(map_id)
+
 
 const ikrTitle = document.getElementById("ikrTitle");
 
@@ -52,6 +52,7 @@ const ikr_w_img_inp = document.getElementById('ikr_w_img');
 
 const modal_link = document.getElementById("modal_link");
 const modal_link_edit = document.getElementById("modal_link_edit");
+const successMessage = document.getElementById('successMessage');
 
 //  get data on load
 
@@ -128,7 +129,7 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     let ct = ev.target;
     ct.style.stroke = "none";
     let data_name = ct.dataset;
-    console.log(data_name)
+    // console.log(data_name)
     ct.style.fill = data_name.fill ? data_name.fill: "";
     tooltip.style.display = "none";
   }
@@ -299,7 +300,7 @@ function select_media_url(event,input_ele) {
         (success) => {
           if (success) {
             console.log("Data successfully sent to the server.");
-
+           ikrwmap_success_message('success','Data Update successfully')
             // Fetch data from the database after the data is sent successfully
             ikrwmap_retrive_data_from_db();
           } else {
@@ -315,7 +316,8 @@ function select_media_url(event,input_ele) {
         your_ajax_object.action,
         (success) => {
           if (success) {
-            console.log("Data successfully sent to the server.");
+           ikrwmap_success_message('success','Data successfully sent to the server.')
+           
 
             // Fetch data from the database after the data is sent successfully
             ikrwmap_retrive_data_from_db();
@@ -344,11 +346,12 @@ function select_media_url(event,input_ele) {
       (success) => {
         if (success) {
           console.log("Data successfully sent to the server.");
-
+         ikrwmap_success_message('success','Data Update successfully');
           // Fetch data from the database after the data is sent successfully
           ikrwmap_retrive_data_from_db();
         } else {
           console.log("Failed to send data.");
+          ikrwmap_success_message('error','Failed to send data.');
         }
       }
     );
@@ -357,6 +360,7 @@ function select_media_url(event,input_ele) {
   // get the data asynconalsy
 
   async function ikrwmap_retrive_data_from_db() {
+    console.log('robin')
     try {
       // fetch the data from the db
       const response = await world_map_fetchAjaxRequest(
@@ -468,7 +472,8 @@ function select_media_url(event,input_ele) {
         
             delete_ele.addEventListener('submit', (ev) => {
                 ev.preventDefault(); // Prevent the default form submission
-      
+                const deleted_element = ikrsvg.querySelector(`#${delete_ele.dataset.id}`);
+               
                 // Show a confirmation alert
                 const isConfirmed = confirm("Are you sure you want to delete this item?");
         
@@ -479,10 +484,22 @@ function select_media_url(event,input_ele) {
                     delete_ele,
                     your_ajax_object.delete_data,
                     (success) => {
+                      
                       if (success) {
-                        console.log("Data successfully sent to the server.");
-            
+                        console.log("Data  sent to the server.");
+                       ikrwmap_success_message('success',' Data deleted successfully');
                         // Fetch data from the database after the data is sent successfully
+                         
+                      
+                        deleted_element.removeAttribute("data-fill", '');
+                        deleted_element.removeAttribute("data-hover", '' );
+                        deleted_element.removeAttribute("data-title", '');
+                        deleted_element.removeAttribute("data-desc",  '');
+                        deleted_element.removeAttribute("data-img",  '');
+                        deleted_element.removeAttribute("data-link",  '');
+                        deleted_element.removeAttribute("data-dataadded", '');
+                      
+                        
                         ikrwmap_retrive_data_from_db();
                       } else {
                         console.log("Failed to send data.");
@@ -513,3 +530,31 @@ function select_media_url(event,input_ele) {
 
   ikrwmap_retrive_data_from_db();
 });
+
+
+
+function ikrwmap_success_message(type,messages){
+  if(type== 'error'){
+    // Show the success message
+  successMessage.classList.remove('ikrwmap_hidden');
+  successMessage.classList.add('ikrwmap_show');
+  successMessage.style.backgroundColor ="red";
+  successMessage.innerHTML = messages;
+  }
+  if(type == 'success'){
+    successMessage.classList.remove('ikrwmap_hidden');
+    successMessage.classList.add('ikrwmap_show');
+    successMessage.style.backgroundColor ='#4CAF50';
+    successMessage.innerHTML = messages;
+  }
+  // Show the success message
+ 
+
+  // Hide the success message after 1 second
+  setTimeout(() => {
+    successMessage.classList.remove('ikrwmap_show');
+    setTimeout(() => {
+      successMessage.classList.add('ikrwmap_hidden');
+    }, 500); // Wait for the transition to finish
+  }, 1000);
+}
