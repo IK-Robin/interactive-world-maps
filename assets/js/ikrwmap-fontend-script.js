@@ -393,7 +393,7 @@ console.log( 'page y ',ev.pageY)
     // Populate the tooltip content
     ikrmap_detail_des.innerHTML = `
       <h3 id="ikrmap_title" class="ikrmap_title">
-        ${ct_dataset.title ? ct_dataset.title : ""}
+        ${ct_dataset.title ? ct_dataset.title : ct_dataset.name}
       </h3> 
       <p>${ct_dataset.desc ? ct_dataset.desc : ""}</p>
     `;
