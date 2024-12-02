@@ -48,7 +48,7 @@
 
 
 
-            <input disabled id="rdata_submit_form" type="submit" value="Submit" class="btn btn-primary" />
+            <input disabled id="rdata_submit_form" type="submit" value="Please Select a State" class="btn btn-primary" />
         </div>
     </div>
 
