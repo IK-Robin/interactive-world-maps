@@ -245,6 +245,7 @@ img {
   overflow-wrap: break-word;
   transform: translate(-50%, -50%);
   transition: all 0.2s ease-in-out;
+  display: none;
 }
 .ikrwmap_details_container::after {
   content: "";
