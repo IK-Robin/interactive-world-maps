@@ -179,9 +179,6 @@ function ikrwmap_click_map_event(ev) {
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
 
- console.log('screen ',screenWidth )
-
- console.log('offset width ',ikrwmap_details.offsetWidth / 4 )
 //  console.log('pagex',ev.pageX )
   // Ensure the tooltip element is visible to get its dimensions accurately
   if (
