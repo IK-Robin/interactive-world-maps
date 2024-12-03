@@ -24,10 +24,10 @@ const fill_color = document.getElementById("fill_color");
 const typeHovcolor = document.getElementById("typeHovcolor");
 const filltype = document.getElementById("filltype");
 
-const rdata_submit_form = document.getElementById("rdata_submit_form");
+const ikrwmap_submit_form = document.getElementById("rdata_submit_form");
 
 // select all edit form input
-const rdata_from_edit = document.getElementById("rdata_from_edit");
+const ikrwmap_from_edit = document.getElementById("rdata_from_edit");
 
 const modal_map_id = document.getElementById("modal_map_id");
 const modal_ikrTitle = document.getElementById("modal_ikrTitle");
@@ -137,7 +137,7 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     // set the id of the click item id in input fild map_id
     map_id.value = click_id;
     if (map_id.value !== "") {
-      rdata_submit_form.removeAttribute("disabled", "");
+      ikrwmap_submit_form.removeAttribute("disabled", "");
     }
 
     if (
@@ -339,13 +339,13 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
       // change the submit button value
 
-      rdata_submit_form.value = "Edit";
+      ikrwmap_submit_form.value = "Edit";
     } else {
       ikrTitle.value = "";
       ikrdes.value = "";
       modal_link.value = "";
       ikr_w_img_inp.value = "";
-      rdata_submit_form.value = "Submit";
+      ikrwmap_submit_form.value = "Submit";
     }
 // Update tooltip content if dataset has relevant information
 if (
@@ -484,7 +484,7 @@ if (
 
     // check the value of the submit btn to change the edit or add mode
 
-    if (rdata_submit_form.value == "Edit") {
+    if (ikrwmap_submit_form.value == "Edit") {
       // send request to edit the data
       worldmp_makeAjaxRequestGlobal(
         form_inp,
@@ -526,7 +526,7 @@ if (
   });
 
   //  edit data from list
-  rdata_from_edit.addEventListener("submit", (edtisub) => {
+  ikrwmap_from_edit.addEventListener("submit", (edtisub) => {
     edtisub.preventDefault();
 
     // Create a Bootstrap modal instance
@@ -535,7 +535,7 @@ if (
     ).hide();
 
     worldmp_makeAjaxRequestGlobal(
-      rdata_from_edit,
+      ikrwmap_from_edit,
       your_ajax_object.edit_data,
       (success) => {
         if (success) {
