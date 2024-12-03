@@ -186,61 +186,30 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     } else {
       // Determine the eventent type: click or touchstart
       // tool tip show bottom
-      // if (event.type === "click") {
-      //   const clickX = event.pageX;
-      //   const clickY = event.pageY;
-      //   const tooltipWidth = ikrwmap_details.offsetWidth;
-      //   const tooltipHeight = ikrwmap_details.offsetHeight;
-      //   const screenWidth = window.innerWidth;
-      //   const screenHeight = window.innerHeight;
-
-      //   let tooltipX = clickX; // Default horizontal position
-      //   let tooltipY = clickY + 20; // Default vertical position below the cursor (20px offset)
-
-      //   // Horizontal position for click
-      //   if (clickX + tooltipWidth > screenWidth) {
-      //     tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
-      //   } else if (clickX < 10) {
-      //     tooltipX = 10; // Align to the left edge
-      //   } else {
-      //     tooltipX = clickX - tooltipWidth / 2; // Center horizontally around the cursor
-      //   }
-
-      //   // Vertical position for click (always below the cursor)
-      //   if (tooltipY + tooltipHeight > screenHeight) {
-      //     // If there's not enough space below, position tooltip above the cursor
-      //     tooltipY = clickY - tooltipHeight - 20;
-      //   }
-
-      //   // Update tooltip position
-      //   ikrwmap_details.style.left = `${tooltipX}px`;
-      //   ikrwmap_details.style.top = `${tooltipY}px`;
-
-      //   console.log("Tooltip Position:", { x: tooltipX, y: tooltipY });
-      // }
-
-      // show the cursor bottom
       if (event.type === "click") {
-        const clickX = event.pageX; // Cursor's X position
-        const clickY = event.pageY; // Cursor's Y position
+        const clickX = event.pageX;
+        const clickY = event.pageY;
         const tooltipWidth = ikrwmap_details.offsetWidth;
         const tooltipHeight = ikrwmap_details.offsetHeight;
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
 
-        let tooltipX = clickX - tooltipWidth / 2; // Center the tooltip horizontally around the cursor
-        let tooltipY = clickY - tooltipHeight - 10; // Position the tooltip above the cursor (10px offset)
+        let tooltipX = clickX; // Default horizontal position
+        let tooltipY = clickY + 20; // Default vertical position below the cursor (20px offset)
 
-        // Ensure the tooltip doesn't overflow horizontally
-        if (tooltipX + tooltipWidth > screenWidth) {
+        // Horizontal position for click
+        if (clickX + tooltipWidth > screenWidth) {
           tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
-        } else if (tooltipX < 10) {
+        } else if (clickX < 10) {
           tooltipX = 10; // Align to the left edge
+        } else {
+          tooltipX = clickX - tooltipWidth / 2; // Center horizontally around the cursor
         }
 
-        // Ensure the tooltip doesn't overflow vertically
-        if (tooltipY < 10) {
-          tooltipY = clickY + 10; // If not enough space above, move it below the cursor
+        // Vertical position for click (always below the cursor)
+        if (tooltipY + tooltipHeight > screenHeight) {
+          // If there's not enough space below, position tooltip above the cursor
+          tooltipY = clickY - tooltipHeight - 20;
         }
 
         // Update tooltip position
@@ -249,6 +218,37 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
 
         console.log("Tooltip Position:", { x: tooltipX, y: tooltipY });
       }
+
+      // show the cursor bottom
+      // if (event.type === "click") {
+      //   const clickX = event.pageX; // Cursor's X position
+      //   const clickY = event.pageY; // Cursor's Y position
+      //   const tooltipWidth = ikrwmap_details.offsetWidth;
+      //   const tooltipHeight = ikrwmap_details.offsetHeight;
+      //   const screenWidth = window.innerWidth;
+      //   const screenHeight = window.innerHeight;
+
+      //   let tooltipX = clickX - tooltipWidth / 2; // Center the tooltip horizontally around the cursor
+      //   let tooltipY = clickY - tooltipHeight - 10; // Position the tooltip above the cursor (10px offset)
+
+      //   // Ensure the tooltip doesn't overflow horizontally
+      //   if (tooltipX + tooltipWidth > screenWidth) {
+      //     tooltipX = screenWidth - tooltipWidth - 10; // Align to the right edge
+      //   } else if (tooltipX < 10) {
+      //     tooltipX = 10; // Align to the left edge
+      //   }
+
+      //   // Ensure the tooltip doesn't overflow vertically
+      //   if (tooltipY < 10) {
+      //     tooltipY = clickY + 10; // If not enough space above, move it below the cursor
+      //   }
+
+      //   // Update tooltip position
+      //   ikrwmap_details.style.left = `${tooltipX}px`;
+      //   ikrwmap_details.style.top = `${tooltipY}px`;
+
+      //   console.log("Tooltip Position:", { x: tooltipX, y: tooltipY });
+      // }
 
       // show tooltip cursor top
 
