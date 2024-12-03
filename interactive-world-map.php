@@ -1,25 +1,14 @@
-<?php
-
-
-
- /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
-
- * @wordpress-plugin
+<?php /**
+ 
  * Plugin Name:       interactive world map plugin     
  * Plugin URI:        https://wordpress.org/plugins/search/interactive-geo-maps-wp/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       INteractive world map plugin for WordPress. 
  * Version:           1.0.0
- * Author:            Robin
+ * Author:            IK Robin
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.robin.org/licenses/gpl-2.0.txt
- * Text Domain:       ikrgeo
+ * Text Domain:       interactiveworld-map
  * Domain Path:       /languages
  */
 
