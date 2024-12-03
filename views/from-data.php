@@ -9,6 +9,7 @@
         <div class="data-entry">
             <label for="id">Map ID</label>
             <input type="text" name="id" class="scratch-data-id" id="map_id" />
+            
             <label for="title">Title</label>
             <input type="text" name="title" placeholder="Insert your title" id="ikrTitle" />
             <label for="des">Description</label>
