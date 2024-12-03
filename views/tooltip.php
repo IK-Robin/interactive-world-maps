@@ -8,7 +8,7 @@
   <!-- <div id="closeDetail"> close</div> -->
         <div style="position: relative">
           <div id="detail_img" class="ikrwmap_detail_img">
-            <img src="<?php echo plugins_url('../assets/images/worldmap.svg',__FILE__); ?>" alt="" id="ikrwmap_detail_img" />
+            <img src="<?php echo esc_url(plugins_url('../assets/images/worldmap.svg',__FILE__)); ?>" alt="" id="ikrwmap_detail_img" />
           </div>
           <div class="ikrwmap_details">
             <!-- <h3 id="ikrmap_title" class="ikrmap_title"></h3> -->
