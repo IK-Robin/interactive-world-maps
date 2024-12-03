@@ -108,5 +108,6 @@
   </tbody>
 </table>
 <script>
-    const deleteNonce = "<?php echo wp_create_nonce('w_map_form_delete_action'); ?>";
+ const deleteNonce = "<?php echo esc_js( wp_create_nonce( 'w_map_form_delete_action' ) ); ?>";
+
 </script>
