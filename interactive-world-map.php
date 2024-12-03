@@ -20,24 +20,24 @@ if ( ! defined( 'IKRWMAP_ROBIN_DIR_PATH_WORLD' ) ) {
 }
 
 include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './functions/functions.php';
-function rdata_add_menu_page()
+function ikrwmap_add_menu_page()
 {
-   add_menu_page('interactive-world-map-robin', 'interactive-world-map-robin', 'manage_options', 'interactive-world-map-robin', 'ikrwmap_rdata_add_admin_menu_page', '', 101);
-   add_submenu_page('interactive-world-map-robin', 'Dashbord', 'interactive world map', 'manage_options', 'interactive-world-map-robin', '', 'ikrwmap_rdata_add_admin_menu_page');
+   add_menu_page('interactive-world-map-robin', 'interactive-world-map-robin', 'manage_options', 'interactive-world-map-robin', 'ikrwmap_ikrwmap_add_admin_menu_page', '', 101);
+   add_submenu_page('interactive-world-map-robin', 'Dashbord', 'interactive world map', 'manage_options', 'interactive-world-map-robin', '', 'ikrwmap_ikrwmap_add_admin_menu_page');
 
    // add show data submenu 
-   add_submenu_page('interactive-world-map-robin', 'map-data', 'map-data', 'manage_options', 'interactive-world-map-robin', 'rdata_add_show_data', 101);
+   add_submenu_page('interactive-world-map-robin', 'map-data', 'map-data', 'manage_options', 'interactive-world-map-robin', 'ikrwmap_add_show_data', 101);
 
 
 }
 
 
-add_action('admin_menu', 'rdata_add_menu_page');
+add_action('admin_menu', 'ikrwmap_add_menu_page');
 
 
 
 
-function rdata_add_show_data()
+function ikrwmap_add_show_data()
 {
 
    ?>
@@ -64,7 +64,7 @@ function rdata_add_show_data()
 
 include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './includes/db.php';
 
-register_activation_hook( __FILE__, 'rdata_plugin_create_tables' );
+register_activation_hook( __FILE__, 'ikrwmap_plugin_create_tables' );
 
 
 ?>
