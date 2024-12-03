@@ -89,6 +89,7 @@ ikrgooMap.addEventListener("load", (irkcontent) => {
     map_item.addEventListener("mouseout", (move_ev) => {
       hideTooltip(move_ev);
     });
+ 
   });
 
   function showTooltip(hover) {
@@ -568,6 +569,7 @@ if (
       } else {
         // set the color of  the map based on the data
         items.forEach((mapId) => {
+       
           response.forEach((data) => {
             if (mapId.id == data.map_id) {
               const setColor = ikrsvg.querySelector(`#${mapId.id}`);
@@ -581,6 +583,31 @@ if (
               setColor.style.fill = `${data.fill_color}`;
             }
           });
+          
+          // hide the tooltip on dashbord 
+          window.addEventListener('click', (ev) => {
+            // Check if the click is within ikrwmap_details
+            if (ikrwmap_details.contains(ev.target)) {
+                return; // Do nothing if the click is inside ikrwmap_details
+            }
+        
+            let matchFound = false;
+            let i = 0;
+        
+            do {
+                if (response[i].map_id == ev.target.id) {
+                    matchFound = true;
+                    break;
+                }
+                i++;
+            } while (i < response.length);
+        
+            // If no match was found, hide the tooltip
+            if (!matchFound) {
+                ikrwmap_details.style.display = 'none';
+            }
+        });
+
         });
 
         // Array of objects for initial population
