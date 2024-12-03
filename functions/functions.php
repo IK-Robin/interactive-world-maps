@@ -44,9 +44,9 @@ function ikrwmap_add_rdat_scripts()
             'your_ajax_object',
             array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'action' => 'rdata_save_data_add',
+                'action' => 'ikrwmap_save_data_add',
                 "feacth" => "ikrwmap_retrieveData_from_db",
-                "edit_data" => "ikr_world_map_edit",
+                "edit_data" => "ikrwmap_data_edit",
                 "delete_data" => "ikr_world_mapDelete",
 
             )
@@ -108,7 +108,7 @@ function ikrwmap_add_frontend_script()
 add_action('wp_enqueue_scripts', 'ikrwmap_add_frontend_script');
 
 
-function ikrwmap_rdata_add_admin_menu_page()
+function ikrwmap_ikrwmap_add_admin_menu_page()
 {
 
 
@@ -149,20 +149,31 @@ function ikrwmap_rdata_add_admin_menu_page()
 
 
 
-function rdata_save_data_add()
+function ikrwmap_save_data_add()
 {
+if (isset($_POST)){
+
+    if (!isset($_POST['w_map_form_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['w_map_form_nonce'])), 'w_map_form_action')) {
+        wp_die('Security check failed.');
+    }
+
+}
+
     global $wpdb;
 
-    // Retrieve the form data
-    $id = isset($_POST['id']) ? sanitize_text_field($_POST['id']) : '';
+ 
 
-    $title = isset($_POST['title']) ? sanitize_text_field($_POST['title']) : '';
-    $des = isset($_POST['des']) ? sanitize_text_field($_POST['des']) : '';
-    $hov_color = isset($_POST['hovecolor']) ? sanitize_text_field($_POST['hovecolor']) : '';
-    $fill_colors = isset($_POST['fillcolor']) ? sanitize_text_field($_POST['fillcolor']) : '';
-    $click_color = isset($_POST['clickcolor']) ? sanitize_text_field($_POST['clickcolor']) : '';
-    $modal_ikr_img = isset($_POST['modal_ikr_img']) ? sanitize_url($_POST['modal_ikr_img']) : '';
-    $map_link = isset($_POST['modal_link']) ? sanitize_url($_POST['modal_link']) : '';
+
+    // Retrieve the form data
+    $id = isset($_POST['id']) ? sanitize_text_field(wp_unslash($_POST['id'])) : '';
+
+    $title = isset($_POST['title']) ? sanitize_text_field(wp_unslash($_POST['title'])) : '';
+    $des = isset($_POST['des']) ? sanitize_text_field(wp_unslash($_POST['des'])) : '';
+    $hov_color = isset($_POST['hovecolor']) ? sanitize_text_field(wp_unslash($_POST['hovecolor'])) : '';
+    $fill_colors = isset($_POST['fillcolor']) ? sanitize_text_field(wp_unslash($_POST['fillcolor'])) : '';
+    $click_color = isset($_POST['clickcolor']) ? sanitize_text_field(wp_unslash($_POST['clickcolor'])) : '';
+    $modal_ikr_img = isset($_POST['modal_ikr_img']) ? sanitize_url(wp_unslash(($_POST['modal_ikr_img']))) : '';
+    $map_link = isset($_POST['modal_link']) ? sanitize_url(wp_unslash($_POST['modal_link'])) : '';
 
 
 
@@ -170,7 +181,7 @@ function rdata_save_data_add()
     // Insert the data into the database
     $table_name = $wpdb->prefix . 'interactive_geo_maps';
     //  add data from data base 
-
+  // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
     $wpdb->insert(
         $table_name,
         array(
@@ -204,14 +215,14 @@ function rdata_save_data_add()
     // Return the response
     //  wp_send_json_success('Data saved successfully.');
 }
-add_action('wp_ajax_rdata_save_data_add', 'rdata_save_data_add');
-add_action('wp_ajax_nopriv_rdata_save_data_add', 'rdata_save_data_add');
+add_action('wp_ajax_ikrwmap_save_data_add', 'ikrwmap_save_data_add');
+add_action('wp_ajax_nopriv_ikrwmap_save_data_add', 'ikrwmap_save_data_add');
 
 
 // create a function to edit the data from db 
 
 
-function ikr_world_map_edit()
+function ikrwmap_data_edit()
 {
 
     if (isset($_POST)) {
@@ -229,8 +240,8 @@ function ikr_world_map_edit()
             $des = isset($_POST['des']) ? sanitize_text_field(wp_unslash($_POST['des'])) : '';
             $hov_color = isset($_POST['hovecolor']) ? sanitize_text_field(wp_unslash($_POST['hovecolor'])) : '';
             $fill_colors = isset($_POST['fillcolor']) ? sanitize_text_field(wp_unslash($_POST['fillcolor'])) : '';
-            $modal_ikr_img = isset($_POST['modal_ikr_img']) ? sanitize_url($_POST['modal_ikr_img']) : '';
-            $map_link = isset($_POST['modal_link']) ? sanitize_url($_POST['modal_link']) : '';
+            $modal_ikr_img = isset($_POST['modal_ikr_img']) ? sanitize_url(wp_unslash($_POST['modal_ikr_img'])) : '';
+            $map_link = isset($_POST['modal_link']) ? sanitize_url(wp_unslash($_POST['modal_link'])) : '';
 
 
 
@@ -248,6 +259,7 @@ function ikr_world_map_edit()
 
 
             // Update the table with the new data
+              // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
             $updated = $wpdb->update(
                 $table_name,
                 [
@@ -282,7 +294,7 @@ function ikr_world_map_edit()
             if ($result === false) {
                 // If the result is not cached, perform the database query
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-                $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE map_id = %s", $id));
+                $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM  $table_name WHERE map_id = %s",  $id));
 
                 if ($result) {
                     // Cache the updated marker data
@@ -300,8 +312,8 @@ function ikr_world_map_edit()
     }
 }
 
-add_action('wp_ajax_ikr_world_map_edit', 'ikr_world_map_edit');
-add_action('wp_ajax_noprive_ikr_world_map_edit', 'ikr_world_map_edit');
+add_action('wp_ajax_ikrwmap_data_edit', 'ikrwmap_data_edit');
+add_action('wp_ajax_noprive_ikrwmap_data_edit', 'ikrwmap_data_edit');
 
 // add delete functionality 
 
@@ -322,7 +334,8 @@ function ikr_world_mapDelete()
 
         if ($result === false) {
             // If no cached result, query the database
-            $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE map_id = %s", $map_id));
+              // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+            $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM  $table_name WHERE map_id = %s", $map_id));
 
             if ($result) {
                 // Cache the result
@@ -332,6 +345,7 @@ function ikr_world_mapDelete()
 
         // Proceed with deletion if data exists
         if ($result) {
+              // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
             $deleted = $wpdb->delete($table_name, ['map_id' => $map_id], ['%s']);
 
             if ($deleted) {
@@ -359,16 +373,30 @@ add_action('wp_ajax_noprive_ikr_world_mapDelete', 'ikr_world_mapDelete');
 
 //  get data from data base 
 // AJAX callback to fetch data from the database
-function ikrwmap_retrieveData_from_db_from_database()
-{
+function ikrwmap_retrieveData_from_db_from_database() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'interactive_geo_maps';
 
-    // Retrieve data from the database
-    $data = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+    // Cache key for this query
+    $cache_key = 'ikrwmap_interactive_geo_maps_data';
+
+    // Try to fetch cached data
+    $data = wp_cache_get($cache_key, 'ikrwmap');
+
+    // If no cached data exists, fetch fresh data and cache it
+    if (false === $data) {
+        // Fetch data from the database
+        $query = "SELECT * FROM `$table_name`";
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+        $data = $wpdb->get_results($query, ARRAY_A);
+
+        // Store the result in the cache
+        wp_cache_set($cache_key, $data, 'ikrwmap', 3600); // Cache for 1 hour
+    }
 
     // Return the response
     wp_send_json_success($data);
 }
 add_action('wp_ajax_ikrwmap_retrieveData_from_db', 'ikrwmap_retrieveData_from_db_from_database');
 add_action('wp_ajax_nopriv_ikrwmap_retrieveData_from_db', 'ikrwmap_retrieveData_from_db_from_database');
+
