@@ -1,5 +1,5 @@
 const ikrgooMap = document.querySelector(".svg_img_obj");
-
+ 
 const tooltip = document.getElementById("ikr_map_tooltip");
 const detail = document.getElementById("detail");
 
@@ -51,6 +51,7 @@ const modal_link = document.getElementById("modal_link");
 const modal_link_edit = document.getElementById("modal_link_edit");
 const successMessage = document.getElementById("successMessage");
 const detail_img_container = document.getElementById("detail_img");
+const ikrwmap_details = document.getElementById("ikrwmap_details");
 
 //  get data on load
 
@@ -397,8 +398,10 @@ if (
     colorInput.value = colorValue;
     // Check if the input value is a valid hex color code
   }
+  console.log(typeHovcolor)
 
   const colorTypes = (element, value) => {
+    console.log(element)
     element.addEventListener("change", (ev) => {
       value.value = ev.target.value;
     });
@@ -421,6 +424,7 @@ if (
     }
   };
 
+  
   // set the color on input filde if the clore is change
   colorTypes(typeHovcolor, hovecolor);
   colorTypes(filltype, fill_color);
