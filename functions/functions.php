@@ -14,24 +14,23 @@ function ikrwmap_add_rdat_scripts()
 
 
 
-    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-map-robin") {
+    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps") {
         wp_enqueue_script('from_submit', plugin_dir_url(__FILE__) . '../assets/js/ikrgeo-interactivity.js', array(), '1.0.1', true);
 
         // wp_enqueue_script('featch_data_from_server',plugin_dir_url(__FILE__) . '../assets/js/your-custom.js');
         wp_enqueue_media();
-        wp_enqueue_script('featch_data_from_server', plugin_dir_url(__FILE__) . '../assets/js/worldmap-global.js');
-        wp_enqueue_script('add_ikrwmap_image', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js');
+        wp_enqueue_script('featch_data_from_server', plugin_dir_url(__FILE__) . '../assets/js/worldmap-global.js',[],'1.0.1',false);
+        wp_enqueue_script('add_ikrwmap_image', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js',[],'1.0.1',true);
 
+        // wp_enqueue_script(
+        //     'bootstrapJs-proper',
+        //     'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js',
+        //     array(),
+        //     '2.9.2',
+        //     true // Load in footer
+        // );
         wp_enqueue_script(
-            'bootstrapJs-proper',
-            'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js',
-            array(),
-            '2.9.2',
-            true // Load in footer
-        );
-        wp_enqueue_script(
-            'robinbootstrapJs-main',
-            'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
+            'robinbootstrapJs-main', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-bootstrap.js',
             array(),
             '2.9.2',
             true // Load in footer
@@ -66,11 +65,11 @@ function ikrwmap_add_world_map_add_style()
     $ikr_world_map_current_screen = get_current_screen();
 
 
-    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-map-robin") {
+    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps") {
         wp_enqueue_style('robingeo_enqueue_styel', plugin_dir_url(__FILE__) . '../assets/style/style.css', array(), '1.0.1', 'all');
         wp_enqueue_style(
             'ikr_bootstrap_css',
-            'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+ plugin_dir_url(__FILE__) . '../assets/style/ikrwmap-bootstrap.css',
             array(),
             '5.0.2'
         );
@@ -94,7 +93,7 @@ function ikrwmap_add_frontend_script()
         // Enqueue Leaflet JS directly from CDN
         wp_enqueue_script('ikrwmap-fontend-script', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-fontend-script.js', array(), '1.0.1', true);
 
-        wp_enqueue_script('add_ikrwmap_image_frontend', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js');
+        wp_enqueue_script('add_ikrwmap_image_frontend', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js',[],'1.0.1',false);
 
         wp_localize_script('ikrwmap-fontend-script', 'ikrwmap_get_url', [
             'featchdata' => 'ikrwmap_retrieveData_from_db',
@@ -130,6 +129,7 @@ function ikrwmap_ikrwmap_add_admin_menu_page()
                 ?>
             </div>
             <div id="successMessage" class="hidden">Form submitted successfully!</div>
+            
         </div>
 
 
@@ -138,8 +138,22 @@ function ikrwmap_ikrwmap_add_admin_menu_page()
 
             include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './views/from-data.php';
             ?>
+            
         </div>
+        
     </div>
+    
+   <h1> show from data</h1>
+  
+
+
+<?php  include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . '/views/show_data.php' ?>
+
+
+   <?php
+
+   // include_once ROBIN_DIR_PATH_WORLD. './views/show-form-data.php';
+   ?>
 <?php
 
 
