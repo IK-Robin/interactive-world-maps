@@ -1,7 +1,7 @@
 <?php
 
 
-function rdata_plugin_create_tables()
+function ikrwmap_plugin_create_tables()
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'interactive_geo_maps';
