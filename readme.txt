@@ -1,5 +1,5 @@
 === Interactive World Maps ===
-Author URI: https://hamjaiu.com
+Author URI: https://www.linkedin.com/in/ik-robin-0b52301a4
 Plugin URI: https://wordpress.org/plugins/interactive-world-maps/ 
 Contributors: IKRobin  
 Tags: interactive map, world map, WordPress map, responsive map, SVG map,google map  
@@ -10,7 +10,7 @@ Stable tag: 1.0.1
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
-Put an interactive, high-quality world map on your WordPress  website! Customize continent colors, links, and hover descriptions through an intuitive admin panel, and display your map using a simple shortcode.  
+Put an interactive, high-quality world map on your WordPress  website! Customize Map colors, links, and hover descriptions through an intuitive admin panel, and display your map using a simple shortcode.  
 
 == Description ==
 
