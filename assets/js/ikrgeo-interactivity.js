@@ -516,7 +516,7 @@ if (
               "success",
               "Data successfully sent to the server."
             );
-
+            ikrwmap_submit_form.value = "Edit"
             // Fetch data from the database after the data is sent successfully
             ikrwmap_retrive_data_from_db();
           } else {
