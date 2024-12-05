@@ -5,12 +5,13 @@ Contributors: IKRobin
 Tags: interactive map, world map, WordPress map, SVG map,google map  
 Requires at least: 5.2.2 
 Tested up to: 6.7.1
+Version: 1.0.0
 Stable tag: 1.0.0  
 
 License: GPLv2 or later  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
-Add an interactive world map to your WordPress site! Customize colors, links, and hover descriptions easily through an intuitive admin panel. Display your map anywhere using a simple shortcode.
+Add an interactive world map to your WordPress site! Customize colors, links, hover, and Images. Use a simple shortcode to display it anywhere!
 
 == Description ==
 
