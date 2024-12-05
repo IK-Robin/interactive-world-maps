@@ -1,15 +1,16 @@
-<?php /**
+<?php 
+/**
  
  * Plugin Name:       Interactive World Maps
  * Plugin URI:        https://wordpress.org/plugins/search/interactive-geo-maps-wp/
  * Description:       INteractive world map plugin for WordPress. 
  * Version:           1.0.0
  * Author:            IK Robin
- * Author URI:        http://example.com/
- * License:           GPL-2.0+
- * License URI:       http://www.robin.org/licenses/gpl-2.0.txt
+ * Author URI:        https://www.linkedin.com/in/ik-robin-0b52301a4/
+
  * Text Domain:       interactive-world-maps
  * Domain Path:       /languages
+ * License: GPLv2 or later
  */
 
  
