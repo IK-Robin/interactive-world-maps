@@ -1,6 +1,6 @@
-=== Interactive World Maps ===
+=== Interactive World Maps WP ===
 Author URI: https://www.linkedin.com/in/ik-robin-0b52301a4
-Plugin URI:https://wordpress.org/plugins/interactive-world-maps/ 
+Plugin URI:https://wordpress.org/plugins/interactive-world-maps-wp/
 Contributors: IKRobin  
 Tags: interactive map, world map, WordPress map, SVG map,google map  
 Requires at least: 5.2.2 
