@@ -14,7 +14,7 @@ function ikrwmap_add_rdat_scripts()
 
 
 
-    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps") {
+    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps-wp") {
         wp_enqueue_script('from_submit', plugin_dir_url(__FILE__) . '../assets/js/ikrgeo-interactivity.js', array(), '1.0.1', true);
 
         // wp_enqueue_script('featch_data_from_server',plugin_dir_url(__FILE__) . '../assets/js/your-custom.js');
@@ -65,7 +65,7 @@ function ikrwmap_add_world_map_add_style()
     $ikr_world_map_current_screen = get_current_screen();
 
 
-    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps") {
+    if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps-wp") {
         wp_enqueue_style('robingeo_enqueue_styel', plugin_dir_url(__FILE__) . '../assets/style/style.css', array(), '1.0.1', 'all');
         wp_enqueue_style(
             'ikr_bootstrap_css',

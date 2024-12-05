@@ -10,7 +10,7 @@ function ikrwmap_plugin_create_tables()
     $sql = "
         CREATE TABLE $table_name (
             `id` int(11) NOT NULL AUTO_INCREMENT,
-            `map_id` varchar(11) DEFAULT NULL,
+            `map_id` varchar(150) DEFAULT NULL,
             `title` varchar(100) DEFAULT NULL,
             `map_des` varchar(100) DEFAULT NULL,
             `hov_color` varchar(7) DEFAULT NULL,
