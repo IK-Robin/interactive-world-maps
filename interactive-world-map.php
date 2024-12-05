@@ -8,7 +8,7 @@
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.robin.org/licenses/gpl-2.0.txt
- * Text Domain:       interactiveworld-map
+ * Text Domain:       interactive-world-maps
  * Domain Path:       /languages
  */
 
@@ -41,11 +41,12 @@ function ikrwmap_add_show_data()
 {
 
    ?>
-   <h1> show from data</h1>
-  
+   <h1> Map Shortcode</h1>
+  <br>
+  <h3>Copy the Shortcode and past it in your page or post</h3>
+  <br>
+<h1> <strong>Shortcode = </strong> [ikr_world_map]</h1>
 
-
-<?php  include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . '/views/show_data.php' ?>
 
 
    <?php
