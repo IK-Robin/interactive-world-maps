@@ -27,11 +27,11 @@ if (! defined('IKRWMAP_ROBIN_DIR_PATH_WORLD')) {
 include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './functions/functions.php';
 function ikrwmap_add_menu_page()
 {
-   add_menu_page('interactive-world-maps-clickable', 'world-maps', 'manage_options', 'interactive-world-maps-clickable', 'ikrwmap_ikrwmap_add_admin_menu_page', '', 101);
-   add_submenu_page('interactive-world-maps-clickable', 'Dashboard', 'Dashboard', 'manage_options', 'interactive-world-maps-clickable', '', 'ikrwmap_ikrwmap_add_admin_menu_page');
+   add_menu_page('interactive-world-maps-clickable', 'World-Maps', 'manage_options', 'interactive-world-maps-clickable', 'ikrwmap_ikrwmap_add_admin_menu_page','dashicons-admin-site', 11);
+   add_submenu_page('interactive-world-maps-clickable', 'Dashboard', 'Dashboard', 'manage_options', 'interactive-world-maps-clickable','', 'ikrwmap_ikrwmap_add_admin_menu_page');
 
    // add show data submenu 
-   add_submenu_page('interactive-world-maps-clickable', 'Map Shortcode', 'Map Shortcode', 'manage_options', 'interactive-world-maps-clickable-shortcode', 'ikrwmap_add_show_data', 101);
+   add_submenu_page('interactive-world-maps-clickable', 'Map Shortcode', 'Map Shortcode', 'manage_options', 'interactive-world-maps-clickable-shortcode', 'ikrwmap_add_show_data', 11);
 
 
 }

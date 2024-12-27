@@ -83,7 +83,7 @@ function ikrwmap_add_frontend_script()
 
 
     // Enqueue the script
-    if (is_single() && has_shortcode(get_the_content(), 'ikr_world_map')) {
+    if (is_single() && has_shortcode(get_the_content(), 'ikrwmap_world_map')) {
 
         // Enqueue Leaflet JS directly from CDN
         wp_enqueue_script('ikrwmap-fontend-script', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-fontend-script.js', array(), '1.0.1', true);
