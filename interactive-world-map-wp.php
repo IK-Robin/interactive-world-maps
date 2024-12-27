@@ -16,7 +16,7 @@
  * License: GPLv2 or later
  */
 
-
+ if ( ! defined( 'ABSPATH' ) ) exit;
 
 
 

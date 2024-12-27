@@ -1,3 +1,8 @@
+
+
+<?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 <!-- Modal -->
 <div class="modal fade" id="ikr_map_data_edit" tabindex="-1" aria-labelledby="ikr_map_data_editLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -108,6 +113,6 @@
   </tbody>
 </table>
 <script>
- const deleteNonce = "<?php echo esc_js( wp_create_nonce( 'w_map_form_delete_action' ) ); ?>";
+
 
 </script>

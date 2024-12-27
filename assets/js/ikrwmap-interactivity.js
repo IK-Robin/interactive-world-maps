@@ -655,7 +655,7 @@ if (
                           <input type="hidden" name="map_id" value="${
                             item.map_id
                           }">
-                          <input type="hidden" name="w_map_form_delete_nonce" value="${deleteNonce}">
+                          <input type="hidden" name="w_map_form_delete_nonce" value="${your_ajax_object.deleteNonce}">
                           <button type="submit" class="delete-btn btn btn-sm btn-danger" data-delete="ikr_data_delete" data-id="${
                             item.map_id
                           }">Delete</button>

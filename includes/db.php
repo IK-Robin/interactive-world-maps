@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 function ikrwmap_plugin_create_tables()
 {

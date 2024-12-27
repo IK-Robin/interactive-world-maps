@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <h1>Add to DB</h1>

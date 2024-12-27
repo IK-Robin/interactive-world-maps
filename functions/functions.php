@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 // add shortcode in the plugin 
 
 include_once IKRWMAP_ROBIN_DIR_PATH_WORLD . './includes/ikrwmap_shortcode.php';
@@ -15,20 +15,14 @@ function ikrwmap_add_rdat_scripts()
 
 
     if ($ikr_world_map_current_screen->base == "toplevel_page_interactive-world-maps-wp") {
-        wp_enqueue_script('from_submit', plugin_dir_url(__FILE__) . '../assets/js/ikrgeo-interactivity.js', array(), '1.0.1', true);
+        wp_enqueue_script('from_submit', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-interactivity.js', array(), '1.0.1', true);
 
         // wp_enqueue_script('featch_data_from_server',plugin_dir_url(__FILE__) . '../assets/js/your-custom.js');
         wp_enqueue_media();
         wp_enqueue_script('featch_data_from_server', plugin_dir_url(__FILE__) . '../assets/js/worldmap-global.js',[],'1.0.1',false);
         wp_enqueue_script('add_ikrwmap_image', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-images.js',[],'1.0.1',true);
 
-        // wp_enqueue_script(
-        //     'bootstrapJs-proper',
-        //     'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js',
-        //     array(),
-        //     '2.9.2',
-        //     true // Load in footer
-        // );
+       
         wp_enqueue_script(
             'robinbootstrapJs-main', plugin_dir_url(__FILE__) . '../assets/js/ikrwmap-bootstrap.js',
             array(),
@@ -46,7 +40,8 @@ function ikrwmap_add_rdat_scripts()
                 'action' => 'ikrwmap_save_data_add',
                 "feacth" => "ikrwmap_retrieveData_from_db",
                 "edit_data" => "ikrwmap_data_edit",
-                "delete_data" => "ikr_world_mapDelete",
+                "delete_data" => "ikrwmap_world_mapDelete",
+                'deleteNonce' => wp_create_nonce( 'ikrwmap_form_delete_action' ),
 
             )
         );
@@ -332,11 +327,11 @@ add_action('wp_ajax_noprive_ikrwmap_data_edit', 'ikrwmap_data_edit');
 
 // add delete functionality 
 
-function ikr_world_mapDelete()
+function ikrwmap_world_mapDelete()
 {
     global $wpdb;
 
-    if (isset($_POST['w_map_form_delete_nonce']) && wp_verify_nonce(sanitize_key($_POST['w_map_form_delete_nonce']), 'w_map_form_delete_action')) {
+    if (isset($_POST['w_map_form_delete_nonce']) && wp_verify_nonce(sanitize_key($_POST['w_map_form_delete_nonce']), 'ikrwmap_form_delete_action')) {
         // Sanitize and retrieve map_id from the POST request
         $map_id = isset($_POST['map_id']) ? sanitize_text_field(wp_unslash($_POST['map_id'])) : '';
 
@@ -381,8 +376,8 @@ function ikr_world_mapDelete()
 }
 
 
-add_action('wp_ajax_ikr_world_mapDelete', 'ikr_world_mapDelete');
-add_action('wp_ajax_noprive_ikr_world_mapDelete', 'ikr_world_mapDelete');
+add_action('wp_ajax_ikrwmap_world_mapDelete', 'ikrwmap_world_mapDelete');
+add_action('wp_ajax_noprive_ikrwmap_world_mapDelete', 'ikrwmap_world_mapDelete');
 
 
 

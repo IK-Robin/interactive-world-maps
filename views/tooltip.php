@@ -1,6 +1,7 @@
 
 <?php 
 // tooltip page 
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <div id="ikr_map_tooltip" class="ikrwmap_tooltip"></div>
