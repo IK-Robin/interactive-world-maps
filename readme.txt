@@ -3,9 +3,9 @@ Author URI: https://www.linkedin.com/in/ik-robin-0b52301a4
 Plugin URI: https://wordpress.org/plugins/interactive-world-maps-clickable/
 Contributors: IKRobin  
 Tags: interactive map, world map, us map, SVG map, google map  
-Requires at least: 5.2.2  
+Requires at least: 5.2  
 Tested up to: 6.7.1  
-Requires PHP:5.1.0  
+Requires PHP: 5.2
 Version: 1.0.0  
 Stable tag: 1.0.0  
 

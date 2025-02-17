@@ -112,7 +112,4 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <!-- Rows will be populated by JavaScript -->
   </tbody>
 </table>
-<script>
 
-
-</script>
